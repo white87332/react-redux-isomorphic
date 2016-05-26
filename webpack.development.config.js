@@ -27,7 +27,12 @@ module.exports = {
             test: /\.js?$/,
             loader: 'babel',
             include: path.resolve(__dirname, 'common'),
-            exclude: /node_modules/
+            exclude: /node_modules/,
+            query:
+            {
+                presets: ['react-hmre', "es2015", "stage-0", "react"],
+                plugins: ["transform-decorators-legacy"],
+            }
         },
         {
             test: /\.json$/,
@@ -50,6 +55,9 @@ module.exports = {
         new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin(),
-        new webpack.DefinePlugin({ 'process.env.NODE_ENV': '"development"' })
+        new webpack.DefinePlugin(
+        {
+            'process.env.NODE_ENV': '"development"'
+        })
     ]
 };
