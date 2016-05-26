@@ -32,7 +32,7 @@ class Counter extends Component
 
         return (
             <div className="a">
-              Clicked: {numbers} times
+              Clicked: {numbers} times123
               {' '}
               <button onClick={increment}>+</button>
               {' '}

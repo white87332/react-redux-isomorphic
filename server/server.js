@@ -80,7 +80,7 @@ function renderFullPage(html, initialState)
           </head>
           <body>
           <div id="root">${html}</div>
-        	<script>window.$REDUX_STATE = ${initialState}</script>
+        	<script>window.$REDUX_STATE = ${JSON.stringify(initialState)}</script>
         	<script src="./asset/js/bundle/bundle.js"></script>
           </body>
         </html>`
