@@ -1,7 +1,8 @@
-import React from 'react';
-import { Route } from 'react-router';
-import Counter from '../components/counter/counter';
-
-export default (
-    <Route path="/" components={Counter} />
-);
+if(process.env.NODE_ENV === 'development')
+{
+    module.exports = require('./routes.dev');
+}
+else
+{
+    module.exports = require('./routes.build');
+}

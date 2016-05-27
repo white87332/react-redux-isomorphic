@@ -12,9 +12,9 @@ module.exports = {
     },
     output:
     {
-        path: path.resolve(__dirname, 'public/asset/js/bundle/'),
-        filename: 'bundle.min.js',
-        chunkFilename: "chunk.[name].min.js"
+        path: path.resolve(__dirname, 'public'),
+        filename: '/asset/js/bundle/bundle.min.js',
+        chunkFilename: "/asset/js/bundle/chunk.[name].min.js"
     },
     module:
     {
@@ -51,7 +51,6 @@ module.exports = {
     ],
     plugins: [
         new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false }}),
-        // new webpack.optimize.CommonsChunkPlugin('vendors', 'asset/js/vendors.min.js'),
         new ExtractTextPlugin('./asset/css/bundle/bundle.min.css', { allChunks: true }),
         new webpack.DefinePlugin({ 'process.env.NODE_ENV': '"production"' })
     ]

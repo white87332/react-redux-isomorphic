@@ -12,7 +12,6 @@ import routes from '../common/routes/routes';
 import rootReducer from '../common/reducers';
 import fetchComponentData from '../common/utils/fetchComponentData';
 
-const config = (process.env.NODE_ENV === 'development')? require('../webpack.development.config') : require('../webpack.production.config');
 const finalCreateStore = applyMiddleware(thunk)(createStore);
 const app = express();
 app.use(express.static(path.resolve('public')));
@@ -21,6 +20,7 @@ app.use(express.static(path.resolve('public')));
 if(process.env.NODE_ENV === 'development')
 {
 	let webpack = require('webpack');
+	const config = require('../webpack.development.config');
 	const compiler = webpack(config);
 	let webpackDevMiddleware = require('webpack-dev-middleware');
 	let webpackHotMiddleware = require('webpack-hot-middleware');
@@ -52,23 +52,37 @@ app.use((req, res, next) =>
 			return res.status(404).send( 'Not found' );
 		}
 
-		// renderProps: contains all necessary data, e.g: routes, router, history, components...
-		fetchComponentData( store.dispatch, renderProps.components, renderProps.params)
-    		.then(() => {
-    			const initView = renderToString((
-    				<Provider store={store}>
-						<RouterContext {...renderProps} />
-    				</Provider>
-    			));
-    			// console.log('\ninitView:\n', initView);
-    			let state = JSON.stringify(store.getState());
-    			// console.log( '\nstate: ', state )
-    			let page = renderFullPage(initView, state);
-    			// console.log( '\npage:\n', page );
-    			return page;
-    		})
-    		.then(page => res.status(200).send(page))
-    		.catch(err => res.end(err.message));
+		if(process.env.NODE_ENV === 'development')
+		{
+			// renderProps: contains all necessary data, e.g: routes, router, history, components...
+			fetchComponentData( store.dispatch, renderProps.components, renderProps.params)
+	    		.then(() => {
+	    			const initView = renderToString((
+	    				<Provider store={store}>
+							<RouterContext {...renderProps} />
+	    				</Provider>
+	    			));
+	    			// console.log('\ninitView:\n', initView);
+	    			let state = JSON.stringify(store.getState());
+	    			// console.log( '\nstate: ', state )
+	    			let page = renderFullPage(initView, state);
+	    			// console.log( '\npage:\n', page );
+	    			return page;
+	    		})
+	    		.then(page => res.status(200).send(page))
+	    		.catch(err => res.end(err.message));
+		}
+		else
+		{
+			const initView = renderToString((
+				<Provider store={store}>
+					<RouterContext {...renderProps} />
+				</Provider>
+			));
+			let state = JSON.stringify(store.getState());
+			let page = renderFullPage(initView, state);
+			res.status(200).send(page);
+		}
 	});
 });
 
