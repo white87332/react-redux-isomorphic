@@ -11,19 +11,22 @@ import thunk from 'redux-thunk';
 import routes from '../common/routes/routes';
 import rootReducer from '../common/reducers';
 import fetchComponentData from '../common/utils/fetchComponentData';
-import webpack from 'webpack';
-import webpackDevMiddleware from 'webpack-dev-middleware';
-import webpackHotMiddleware from 'webpack-hot-middleware';
-import config from '../webpack.development.config';
 
+const config = (process.env.NODE_ENV === 'development')? require('../webpack.development.config') : require('../webpack.production.config');
 const finalCreateStore = applyMiddleware(thunk)(createStore);
 const app = express();
-app.use(express.static(path.normalize(__dirname) + '/public'));
+app.use(express.static(path.resolve('public')));
 
 // initialize webpack HMR
-const compiler = webpack(config);
-app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath }));
-app.use(webpackHotMiddleware(compiler));
+if(process.env.NODE_ENV === 'development')
+{
+	let webpack = require('webpack');
+	const compiler = webpack(config);
+	let webpackDevMiddleware = require('webpack-dev-middleware');
+	let webpackHotMiddleware = require('webpack-hot-middleware');
+	app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath }));
+	app.use(webpackHotMiddleware(compiler));
+}
 
 // server rendering
 app.use((req, res, next) =>
@@ -71,6 +74,7 @@ app.use((req, res, next) =>
 
 function renderFullPage(html, initialState)
 {
+	let src = (process.env.NODE_ENV === 'development')? "./asset/js/bundle/bundle.js" : "./asset/js/bundle/bundle.min.js";
     return (
         `<!doctype html>
         <html lang="utf-8">
@@ -80,7 +84,7 @@ function renderFullPage(html, initialState)
           <body>
           <div id="root">${html}</div>
         	<script>window.$REDUX_STATE = ${JSON.stringify(initialState)}</script>
-        	<script src="./asset/js/bundle/bundle.js"></script>
+        	<script src=${src}></script>
           </body>
         </html>`
     );

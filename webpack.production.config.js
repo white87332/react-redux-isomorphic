@@ -12,9 +12,9 @@ module.exports = {
     },
     output:
     {
-        path: path.resolve(__dirname, 'public'),
-        filename: '/asset/js/bundle/bundle.min.js',
-        chunkFilename: "/asset/js/bundle/chunk.[name].min.js"
+        path: path.resolve(__dirname, 'public/asset/js/bundle/'),
+        filename: 'bundle.min.js',
+        chunkFilename: "chunk.[name].min.js"
     },
     module:
     {
@@ -23,7 +23,12 @@ module.exports = {
             test: /\.js?$/,
             loader: 'babel',
             include: path.resolve(__dirname, 'common'),
-            exclude: /node_modules/
+            exclude: /node_modules/,
+            query:
+            {
+                presets: ["es2015", "stage-0", "react"],
+                plugins: ["transform-decorators-legacy"],
+            }
         },
         {
             test: /\.json$/,

@@ -11,7 +11,6 @@ export default function fetchComponentData(dispatch, components, params)
 	}, []);
 
 	const promises = needs.map(need => dispatch(need(params)));
-
 	return Promise.all(promises);
 }
 

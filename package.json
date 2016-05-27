@@ -4,10 +4,9 @@
   "description": "An isomorphic example built with react, redux and react-router",
   "main": "dev.js",
   "scripts": {
-    "start": "node server/index.js",
-    "start2": "npm run build& npm run server",
-    "build": "webpack -d --progress --watch",
-    "server": "node server.js"
+    "dev": "NODE_ENV=development nodemon server/index.js",
+    "prod": "NODE_ENV=production nodemon server/index.js",
+    "deploy": "NODE_ENV=production webpack -p --config webpack.production.config.js"
   },
   "repository": {
     "type": "git",
