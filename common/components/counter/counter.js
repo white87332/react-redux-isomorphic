@@ -31,8 +31,8 @@ class Counter extends Component
         } = this.props;
 
         return (
-            <div className="a">
-              Clicked: {numbers} times09
+            <div>
+              Clicked: {numbers} times
               {' '}
               <button onClick={increment}>+</button>
               {' '}

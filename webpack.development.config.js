@@ -1,5 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
+var autoprefixer = require('autoprefixer');
 
 module.exports = {
     entry:
@@ -51,6 +52,9 @@ module.exports = {
             loader: 'url-loader?limit=8192&name=../common/asset/img/[name].[ext]'
         }]
     },
+    postcss: [
+        autoprefixer
+    ],
     plugins: [
         new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin(),

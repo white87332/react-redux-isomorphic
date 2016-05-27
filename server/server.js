@@ -3,7 +3,7 @@ import express from 'express';
 import path from 'path';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import { Router, RouterContext, match } from 'react-router';
+import { RouterContext, match } from 'react-router';
 import { applyMiddleware, createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { combineReducers } from 'redux';
@@ -18,7 +18,6 @@ import config from '../webpack.development.config';
 
 const finalCreateStore = applyMiddleware(thunk)(createStore);
 const app = express();
-
 app.use(express.static(path.normalize(__dirname) + '/public'));
 
 // initialize webpack HMR
