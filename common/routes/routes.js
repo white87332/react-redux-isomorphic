@@ -4,5 +4,5 @@ if(process.env.NODE_ENV === 'development')
 }
 else
 {
-    module.exports = require('./routes.build');
+    module.exports = require('./routes.prod');
 }

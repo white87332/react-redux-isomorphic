@@ -51,41 +51,17 @@ export default function isomorphic(app)
 
         		if(renderProps === null)
                 {
-        			// return next('err msg: route not found'); // yield control to next middleware to handle the request
         			return res.status(404).send( 'Not found' );
         		}
 
-        		if(process.env.NODE_ENV === 'development')
-        		{
-        			// renderProps: contains all necessary data, e.g: routes, router, history, components...
-        			fetchComponentData( store.dispatch, renderProps.components, renderProps.params)
-        	    		.then(() => {
-        	    			const initView = renderToString((
-        	    				<Provider store={store}>
-        							<RouterContext {...renderProps} />
-        	    				</Provider>
-        	    			));
-        	    			// console.log('\ninitView:\n', initView);
-        	    			let state = JSON.stringify(store.getState());
-        	    			// console.log( '\nstate: ', state )
-        	    			let page = renderFullPage(initView, state);
-        	    			// console.log( '\npage:\n', page );
-        	    			return page;
-        	    		})
-        	    		.then(page => res.status(200).send(page))
-        	    		.catch(err => res.end(err.message));
-        		}
-        		else
-        		{
-        			const initView = renderToString((
-        				<Provider store={store}>
-        					<RouterContext {...renderProps} />
-        				</Provider>
-        			));
-        			let state = JSON.stringify(store.getState());
-        			let page = renderFullPage(initView, state);
-        			res.status(200).send(page);
-        		}
+                const initView = renderToString((
+                    <Provider store={store}>
+                        <RouterContext {...renderProps} />
+                    </Provider>
+                ));
+                let state = JSON.stringify(store.getState());
+                let page = renderFullPage(initView, state);
+                res.status(200).send(page);
         	});
         }
     });

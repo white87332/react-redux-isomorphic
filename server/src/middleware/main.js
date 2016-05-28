@@ -15,14 +15,12 @@ export default function(app)
     app.use(cors());
     app.use(bodyParser.urlencoded({extended: true}));
     // app.use(favicon(rootPath + '/favicon.ico'));
+    app.disable('x-powered-by');
     app.use(session(
     {
         secret: uuid.v1(),
         resave: true,
         saveUninitialized: true
     }));
-    app.use(function (req, res, next) {
-        res.removeHeader("X-Powered-By");
-        next();
-    });
+
 }
