@@ -5,7 +5,7 @@ import { applyMiddleware, createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { combineReducers } from 'redux';
 import thunk from 'redux-thunk';
-import routes from '../../../common/routes/routes';
+import createRoutes from '../../../common/routes/routes';
 import rootReducer from '../../../common/reducers';
 import fetchComponentData from '../../../common/utils/fetchComponentData';
 
@@ -29,6 +29,7 @@ export default function isomorphic(app)
     app.use((req, res, next) =>
     {
     	const store = finalCreateStore(rootReducer);
+        const routes = createRoutes(store);
 
         if(req.url.indexOf('/api') !== -1)
         {

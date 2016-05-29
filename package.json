@@ -4,8 +4,8 @@
   "description": "An isomorphic example built with react, redux and react-router",
   "main": "dev.js",
   "scripts": {
-    "dev": "NODE_ENV=development nodemon server/index.js",
-    "prod": "nodemon server/index.js",
+    "dev": "NODE_ENV=development node server/index.js",
+    "prod": "node server/index.js",
     "deploy": "NODE_ENV=production webpack -p --config webpack.production.config.js"
   },
   "repository": {
@@ -36,6 +36,7 @@
     "react-redux": "^4.4.5",
     "react-router": "^2.4.1",
     "react-router-redux": "^4.0.4",
+    "redial": "^0.4.2",
     "redux": "^3.5.2",
     "redux-thunk": "^2.1.0",
     "serve-favicon": "^2.3.0",
