@@ -1,8 +1,9 @@
 if (typeof require.ensure !== 'function') require.ensure = (d, c) => c(require);
 
+import isNode from 'detect-node';
 import Layout from '../components/layout/layout';
 
-let path = (process.cwd() !== "/") ? process.cwd() + "/common/routes/" : "./";
+let path = (isNode) ? process.cwd() + "/common/routes/" : "./";
 
 export default (store) =>
 {

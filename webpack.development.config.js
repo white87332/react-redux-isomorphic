@@ -44,7 +44,8 @@ module.exports = {
             loaders: [
                 "style",
                 "css",
-                "sass"
+                "sass",
+                "postcss"
             ]
         },
         {

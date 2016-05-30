@@ -13,6 +13,7 @@ export default function(app)
     app.use(compression({threshold:0}));
     app.use(express.static(rootPath));
     app.use(cors());
+    app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({extended: true}));
     // app.use(favicon(rootPath + '/favicon.ico'));
     app.disable('x-powered-by');
@@ -22,5 +23,4 @@ export default function(app)
         resave: true,
         saveUninitialized: true
     }));
-
 }
