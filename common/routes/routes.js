@@ -15,10 +15,20 @@ export default function createRoutes(store)
             {
                 require.ensure([], (require) =>
                 {
-                    cb(null, [
-                        require(path + "layoutRoute").default(store),
-                        require(path + "postsRoute").default(store)
-                    ]);
+                    switch (location.pathname)
+                    {
+                        case '/posts':
+                            cb(null, [
+                                require(path + "postsRoute").default(store)
+                            ]);
+                            break;
+                        case '/counter':
+                            cb(null, [
+                                require(path + "layoutRoute").default(store)
+                            ]);
+                            break;
+                        default:
+                    }
                 }, 'main');
             }
         }]

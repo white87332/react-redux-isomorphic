@@ -7,7 +7,6 @@ let path = (process.cwd() !== "/") ? process.cwd() + "/common/routes/" : "./";
 export default (store) =>
 {
     return {
-        path: "/",
         component: Layout,
         getChildRoutes(location, cb)
         {
