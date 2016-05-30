@@ -4,7 +4,7 @@
   "description": "An isomorphic example built with react, redux and react-router",
   "main": "dev.js",
   "scripts": {
-    "dev": "NODE_ENV=development node server/index.js",
+    "dev": "NODE_ENV=development nodemon server/index.js",
     "prod": "node server/index.js",
     "deploy": "NODE_ENV=production webpack -p --config webpack.production.config.js"
   },

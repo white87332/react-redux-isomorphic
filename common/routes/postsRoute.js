@@ -8,7 +8,7 @@ export default (store) => (
     {
         require.ensure([], (require) =>
         {
-            cb(null, [require(path + "counterRequire").default(store)]);
-        }, 'counter');
+            cb(null, [require(path + "postsRequire").default(store)]);
+        }, 'posts');
     }
 });
