@@ -1,14 +1,13 @@
 if (typeof require.ensure !== 'function') require.ensure = (d, c) => c(require);
 
-let path = (process.cwd() !== "/") ? process.cwd() + "/common/routes/" : "./";
-
 export default (store) => (
 {
-    getChildRoutes(location, cb)
+    path: 'posts',
+    getComponent(nextState, cb)
     {
         require.ensure([], (require) =>
         {
-            cb(null, [require(path + "postsComponent").default(store)]);
+            cb(null, require('../components/posts/posts').default);
         }, 'posts');
     }
 });

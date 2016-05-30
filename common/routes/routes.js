@@ -13,22 +13,13 @@ export default function createRoutes(store)
             component: Main,
             getChildRoutes(location, cb)
             {
-                switch (location.pathname)
+                require.ensure([], (require) =>
                 {
-                    case '/counter':
-                        require.ensure([], (require) =>
-                        {
-                            cb(null, [require(path + "layoutRoute").default(store)]);
-                        }, 'layout');
-                        break;
-                    case '/posts':
-                        require.ensure([], (require) =>
-                        {
-                            cb(null, [require(path + "postsRoute").default(store)]);
-                        }, 'posts');
-                        break;
-                    default:
-                }
+                    cb(null, [
+                        require(path + "layoutRoute").default(store),
+                        require(path + "postsRoute").default(store)
+                    ]);
+                }, 'main');
             }
         }]
     };
