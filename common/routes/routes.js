@@ -11,10 +11,25 @@ export default function createRoutes(store)
         {
             path: '/',
             component: Main,
-            childRoutes: [
-                require(path + "layoutRoute").default(store),
-                require(path + "postsRoute").default(store)
-            ]
+            getChildRoutes(location, cb)
+            {
+                switch (location.pathname)
+                {
+                    case '/counter':
+                        require.ensure([], (require) =>
+                        {
+                            cb(null, [require(path + "layoutRoute").default(store)]);
+                        }, 'layout');
+                        break;
+                    case '/posts':
+                        require.ensure([], (require) =>
+                        {
+                            cb(null, [require(path + "postsRoute").default(store)]);
+                        }, 'posts');
+                        break;
+                    default:
+                }
+            }
         }]
     };
 }

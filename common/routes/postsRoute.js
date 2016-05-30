@@ -8,7 +8,7 @@ export default (store) => (
     {
         require.ensure([], (require) =>
         {
-            cb(null, [require(path + "postsRequire").default(store)]);
+            cb(null, [require(path + "postsComponent").default(store)]);
         }, 'posts');
     }
 });

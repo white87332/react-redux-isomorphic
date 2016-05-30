@@ -8,7 +8,7 @@ export default (store) => (
     {
         require.ensure([], (require) =>
         {
-            cb(null, [require(path + "counterRequire").default(store)]);
+            cb(null, [require(path + "counterComponent").default(store)]);
         }, 'counter');
     }
 });

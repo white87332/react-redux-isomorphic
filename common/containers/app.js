@@ -13,9 +13,7 @@ const routes = createRoutes(store);
 match({ routes, history: browserHistory }, (error, redirectLocation, renderProps) => {
 	render(
 		<Provider store={store}>
-			<Router history={browserHistory} {...renderProps}>
-				{routes}
-			</Router>
+			<Router history={browserHistory} {...renderProps} />
 		</Provider>,
 		document.getElementById('root')
 	);
