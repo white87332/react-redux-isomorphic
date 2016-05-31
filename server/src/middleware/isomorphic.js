@@ -40,7 +40,6 @@ export default function isomorphic(app)
             // react-router
         	match( {routes, location: req.url}, ( error, redirectLocation, renderProps ) =>
             {
-                console.log(error);
         		if(error)
                 {
                     return res.status(500).send( error.message );
