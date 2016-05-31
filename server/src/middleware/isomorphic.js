@@ -60,37 +60,20 @@ export default function isomorphic(app)
                 // 所以我的做法是，在每個 routing 的 leaf node (如果有巢狀 routing 的話，就是最裡面的那個) 放一個 static method fetchData(),
                 // 這樣的話，在 server 我們就可以用 react-router 去 match 最後被 route 到的 component, 進而得到 data 的進入點。
                 let components = renderProps.components[renderProps.components.length - 1].WrappedComponent;
-
                 fetchComponentData( store.dispatch, components, renderProps.params)
-            		.then( () => {
-
+            		.then(() => {
             			const initView = renderToString((
             				<Provider store={store}>
             				  <RouterContext {...renderProps} />
             				</Provider>
             			));
 
-            			// console.log('\ninitView:\n', initView);
-
             			let state = JSON.stringify( store.getState() );
-            			// console.log( '\nstate: ', state )
-
             			let page = renderFullPage( initView, state );
-            			// console.log( '\npage:\n', page );
-
             			return page;
             		})
             		.then( page => res.status(200).send(page) )
             		.catch( err => res.end(err.message) );
-
-                // const initView = renderToString((
-                //     <Provider store={store}>
-                //         <RouterContext {...renderProps} />
-                //     </Provider>
-                // ));
-                // let state = JSON.stringify(store.getState());
-                // let page = renderFullPage(initView, state);
-                // res.status(200).send(page);
         	});
         }
     });

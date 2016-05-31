@@ -2,7 +2,6 @@ import React, { Component, PropTypes} from 'react';
 import { bindActionCreators } from 'redux';
 import * as postsActions from '../../actions/postsActions';
 import { connect } from 'react-redux';
-import { fetchNeeds } from '../../utils/fetchComponentData';
 
 function mapStateToProps(state)
 {
@@ -21,6 +20,7 @@ function mapDispatchToProps(dispatch)
 
 class Posts extends Component
 {
+    // server 端判斷 needs 觸發取得 initial data
     static needs = [
         postsActions.postsList
     ];
@@ -30,8 +30,10 @@ class Posts extends Component
         super(props);
     }
 
-    componentDidMount() {
-        fetchNeeds( Posts.needs, this.props );
+    componentDidMount()
+    {
+        let { dispatch, postsActions } = this.props;
+        dispatch(postsActions.postsList());
 	}
 
     render()
