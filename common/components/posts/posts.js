@@ -2,7 +2,7 @@ import React, { Component, PropTypes} from 'react';
 import { bindActionCreators } from 'redux';
 import * as postsActions from '../../actions/postsActions';
 import { connect } from 'react-redux';
-
+import { fetchNeeds } from '../../utils/fetchComponentData';
 
 function mapStateToProps(state)
 {
@@ -14,18 +14,25 @@ function mapStateToProps(state)
 function mapDispatchToProps(dispatch)
 {
     return {
-        actions : bindActionCreators(postsActions, dispatch)
+        dispatch,
+        postsActions
     };
 }
 
 class Posts extends Component
 {
+    static needs = [
+        postsActions.postsList
+    ];
+
     constructor(props)
     {
         super(props);
-        const { postsList } = this.props.actions;
-        postsList();
     }
+
+    componentDidMount() {
+        fetchNeeds( Posts.needs, this.props );
+	}
 
     render()
     {
@@ -45,7 +52,7 @@ class Posts extends Component
 
 Posts.propTypes = {
     posts: PropTypes.object.isRequired,
-    actions: PropTypes.object.isRequired
+    postsActions: PropTypes.object.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Posts);

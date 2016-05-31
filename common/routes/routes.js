@@ -8,29 +8,32 @@ let path = (isNode) ? process.cwd() + "/common/routes/" : "./";
 export default function createRoutes(store)
 {
     return {
+        path: '/',
+        component: Main,
         childRoutes: [
         {
-            path: '/',
-            component: Main,
             getChildRoutes(location, cb)
             {
-                require.ensure([], (require) =>
+                switch (location.pathname)
                 {
-                    switch (location.pathname)
-                    {
-                        case '/posts':
+                    case '/posts':
+                        require.ensure([], (require) =>
+                        {
                             cb(null, [
                                 require(path + "postsRoute").default(store)
                             ]);
-                            break;
-                        case '/counter':
+                        }, 'main');
+                        break;
+                    case '/counter':
+                        require.ensure([], (require) =>
+                        {
                             cb(null, [
                                 require(path + "layoutRoute").default(store)
                             ]);
-                            break;
-                        default:
-                    }
-                }, 'main');
+                        }, 'main');
+                        break;
+                    default:
+                }
             }
         }]
     };
