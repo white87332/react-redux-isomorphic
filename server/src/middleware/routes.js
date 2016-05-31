@@ -1,128 +1,80 @@
+import "babel-polyfill";
 import fs from 'fs';
 import { isArray } from 'util';
 import Result from '../class/result';
 import path from 'path';
 import multipart from 'connect-multiparty';
-import async from 'async';
 
 let apiPath = path.resolve(__dirname, "../api");
 let uploadOption = {
     uploadDir: path.resolve(__dirname, "../../../uploads")
 };
 
-export default function(app)
+export default async function(app)
 {
-    async.series(
-        [
-            function(callback)
+    try
+    {
+        await routesSet(app);
+        await routeErrorSet(app);
+    }
+    catch (e)
+    {
+        console.log(e);
+    }
+}
+
+function routesSet(app)
+{
+    return new Promise((resolve, reject) =>
+    {
+        fs.readdir(apiPath, (err, files) =>
+        {
+            for (let fileName of files)
             {
-                fs.readdir(apiPath, (err, files) =>
+                if (fileName !== '.DS_Store')
                 {
-                    for (let fileName of files)
+                    let apiObj = require('../api/' + fileName).default;
+                    let { routes, initExec } = apiObj.init();
+                    if ((initExec !== undefined && !initExec) && (isArray(routes) && routes.length > 0))
                     {
-                        if (fileName !== '.DS_Store')
+                        for (let route of routes)
                         {
-                            let apiObj = require('../api/' + fileName).default;
-                            let { routes, initExec } = apiObj.init();
-                            if ((initExec !== undefined && !initExec) && (isArray(routes) && routes.length > 0))
+                            let url = route.url.toLowerCase();
+                            let method = route.method.toLowerCase();
+                            if (method === 'post')
                             {
-                                for (let route of routes)
-                                {
-                                    let url = route.url.toLowerCase();
-                                    let method = route.method.toLowerCase();
-                                    if (method === 'post')
-                                    {
-                                        app[route.method.toLowerCase()](url, multipart(uploadOption), apiObj.exec);
-                                    }
-                                    else
-                                    {
-                                        app[route.method.toLowerCase()](url, apiObj.exec);
-                                    }
-                                }
+                                app[route.method.toLowerCase()](url, multipart(uploadOption), apiObj.exec);
                             }
-                            else if (initExec !== undefined && initExec)
+                            else
                             {
-                                apiObj.exec();
+                                app[route.method.toLowerCase()](url, apiObj.exec);
                             }
                         }
                     }
-
-                    callback();
-                });
+                    else if (initExec !== undefined && initExec)
+                    {
+                        apiObj.exec();
+                    }
+                }
             }
-        ],
-        function(err, results)
-        {
-            app.get('*', function(req, res) {
-                res.status(404).send('Server.js > 404 - Page Not Found');
-            });
-
-            app.use((err, req, res, next) =>{
-                console.log(err);
-                res.status(500).send("Server error");
-            });
+            resolve();
         });
+    });
 }
 
+function routeErrorSet(app)
+{
+    return new Promise((resolve, reject) =>
+    {
+        app.get('*', function(req, res) {
+            res.status(404).send('Server.js > 404 - Page Not Found');
+        });
 
-// export default function routes(app)
-// {
-//     (async (app) => {
-//         await pathSet(app);
-//         await errorSet(app);
-//     })();
-// }
-//
-//
-// function pathSet(app)
-// {
-//     return new Promise((resolve, reject) => {
-//         fs.readdir('./api', (err, files) =>
-//         {
-//             for (let fileName of files)
-//             {
-//                 if (fileName !== '.DS_Store')
-//                 {
-//                     let apiObj = require('../api/' + fileName).default;
-//                     let { routes, initExec } = apiObj.init();
-//                     if ((initExec !== undefined && !initExec) && (isArray(routes) && routes.length > 0))
-//                     {
-//                         for (let route of routes)
-//                         {
-//                             let url = route.url.toLowerCase();
-//                             let method = route.method.toLowerCase();
-//                             if (method === 'post')
-//                             {
-//                                 app[route.method.toLowerCase()](url, multipart(uploadOption), apiObj.exec);
-//                             }
-//                             else
-//                             {
-//                                 app[route.method.toLowerCase()](url, apiObj.exec);
-//                             }
-//                         }
-//                     }
-//                     else if (initExec !== undefined && initExec)
-//                     {
-//                         apiObj.exec();
-//                     }
-//                 }
-//             }
-//             resolve(null);
-//         });
-//     });
-// }
-//
-// function errorSet(app)
-// {
-//     return new Promise((resolve, reject) => {
-//         app.get('*', function(req, res) {
-//             res.status(404).send('Server.js > 404 - Page Not Found');
-//         });
-//
-//         app.use((err, req, res, next) =>
-//         {
-//             res.status(500).send("Server error");
-//         });
-//         resolve(null);
-//     });
-// }
+        app.use((err, req, res, next) =>{
+            console.log(err);
+            res.status(500).send("Server error");
+        });
+
+        resolve();
+    });
+}
