@@ -33,6 +33,12 @@ export default function createRoutes(store)
                         }, 'main');
                         break;
                     default:
+                        require.ensure([], (require) =>
+                        {
+                            cb(null, [
+                                require(path + "notFoundRoute").default(store)
+                            ]);
+                        }, 'notFound');
                 }
             }
         }]

@@ -2,6 +2,7 @@ import React, { Component, PropTypes} from 'react';
 import { bindActionCreators } from 'redux';
 import * as postsActions from '../../actions/postsActions';
 import { connect } from 'react-redux';
+import { fetchNeeds } from '../../utils/fetchComponentData';
 
 function mapStateToProps(state)
 {
@@ -32,8 +33,7 @@ class Posts extends Component
 
     componentDidMount()
     {
-        let { dispatch, postsActions } = this.props;
-        dispatch(postsActions.postsList());
+        fetchNeeds( Posts.needs, this.props )
 	}
 
     render()
