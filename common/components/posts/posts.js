@@ -31,11 +31,6 @@ class Posts extends Component
         super(props);
     }
 
-    componentDidMount()
-    {
-        fetchNeeds( Posts.needs, this.props )
-	}
-
     render()
     {
         const { posts } = this.props;

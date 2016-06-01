@@ -32,6 +32,7 @@
     "express": "^4.13.4",
     "express-session": "^1.13.0",
     "immutable": "^3.8.1",
+    "moment": "^2.13.0",
     "node-uuid": "^1.4.7",
     "normalize.css": "^4.1.1",
     "react": "^15.1.0",
@@ -41,7 +42,7 @@
     "react-router-redux": "^4.0.4",
     "redux": "^3.5.2",
     "serve-favicon": "^2.3.0",
-    "superagent": "^1.8.3",
+    "superagent": "^2.0.0",
     "winston": "^2.2.0",
     "winston-daily-rotate-file": "^1.1.1"
   },

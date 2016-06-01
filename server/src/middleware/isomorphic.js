@@ -81,17 +81,19 @@ export default function isomorphic(app)
 
 function renderFullPage(html, initialState)
 {
-	let src = (process.env.NODE_ENV === 'development')? "./asset/js/bundle/bundle.js" : "./asset/js/bundle/bundle.min.js";
+	let jsSrc = (process.env.NODE_ENV === 'development')? "./asset/js/bundle/bundle.js" : "./asset/js/bundle/bundle.min.js";
+    let cssLink = (process.env.NODE_ENV === 'development')? "" : "<link rel=stylesheet type='text/css' href='./asset/css/bundle/bundle.min.css'>";
     return (
         `<!doctype html>
         <html lang="utf-8">
           <head>
         	<title>Universal Redux Example</title>
+            ${cssLink}
           </head>
           <body>
             <div id="root">${html}</div>
             <script>window.$REDUX_STATE = ${JSON.stringify(initialState)}</script>
-            <script src=${src}></script>
+            <script src=${jsSrc}></script>
           </body>
         </html>`
     );
