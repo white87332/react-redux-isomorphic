@@ -21,7 +21,7 @@ export default
         let body = req.body;
         let params = req.params;
         let query = req.query;
-console.log("enter");
+
         result.result = 1;
         result.message = "message";
         result.data = [

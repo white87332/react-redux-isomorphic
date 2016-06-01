@@ -64,7 +64,7 @@ export default function isomorphic(app)
             		.then(() => {
             			const initView = renderToString((
             				<Provider store={store}>
-            				  <RouterContext {...renderProps} />
+            				    <RouterContext {...renderProps} />
             				</Provider>
             			));
 
