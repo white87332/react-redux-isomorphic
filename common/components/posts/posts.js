@@ -2,7 +2,6 @@ import React, { Component, PropTypes} from 'react';
 import { bindActionCreators } from 'redux';
 import * as postsActions from '../../actions/postsActions';
 import { connect } from 'react-redux';
-import { fetchNeeds } from '../../utils/fetchComponentData';
 
 function mapStateToProps(state)
 {
