@@ -8,6 +8,9 @@ import promiseMiddleware from '../../../common/middleware/promiseMiddleware';
 import createRoutes from '../../../common/routes/routes';
 import rootReducer from '../../../common/reducers';
 import fetchComponentData from '../../../common/utils/fetchComponentData';
+import { I18nextProvider } from 'react-i18next';
+import i18n from '../i18n/i18n-server';
+
 
 const finalCreateStore = applyMiddleware(promiseMiddleware)(createStore);
 
@@ -30,6 +33,11 @@ export default function isomorphic(app)
     {
     	const store = finalCreateStore(rootReducer);
         const routes = createRoutes(store);
+        const locale = req.language;
+        const resources = i18n.getResourceBundle(locale, 'common');
+        const i18nClient = { locale, resources };
+        const i18nServer = i18n.cloneInstance();
+        i18nServer.changeLanguage(locale);
 
         if(req.url.indexOf('/api') !== -1)
         {
@@ -64,12 +72,14 @@ export default function isomorphic(app)
             		.then(() => {
             			const initView = renderToString((
             				<Provider store={store}>
-            				    <RouterContext {...renderProps} />
+                                <I18nextProvider i18n={i18nServer}>
+            				        <RouterContext {...renderProps} />
+                                </I18nextProvider>
             				</Provider>
             			));
 
             			let state = JSON.stringify( store.getState() );
-            			let page = renderFullPage( initView, state );
+            			let page = renderFullPage( initView, state, i18nClient );
             			return page;
             		})
             		.then( page => res.status(200).send(page) )
@@ -79,7 +89,7 @@ export default function isomorphic(app)
     });
 }
 
-function renderFullPage(html, initialState)
+function renderFullPage(html, initialState, i18nClient)
 {
 	let jsSrc = (process.env.NODE_ENV === 'development')? "./asset/js/bundle/bundle.js" : "./asset/js/bundle/bundle.min.js";
     let cssLink = (process.env.NODE_ENV === 'development')? "" : "<link rel=stylesheet type='text/css' href='./asset/css/bundle/bundle.min.css'>";
@@ -93,6 +103,7 @@ function renderFullPage(html, initialState)
           <body>
             <div id="root">${html}</div>
             <script>window.$REDUX_STATE = ${JSON.stringify(initialState)}</script>
+            <script>window.$i18n = ${JSON.stringify(i18nClient)}</script>
             <script src=${jsSrc}></script>
           </body>
         </html>`

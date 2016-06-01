@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as CounterActions from '../../actions/counter.js';
+import { translate } from 'react-i18next';
 
 function mapStateToProps(state)
 {
@@ -15,6 +16,7 @@ function mapDispatchToProps(dispatch)
     return bindActionCreators(CounterActions, dispatch);
 }
 
+@translate(['common'])
 class Counter extends Component
 {
     constructor(props, context)
@@ -30,6 +32,8 @@ class Counter extends Component
             increment, incrementIfOdd, incrementAsync, decrement, numbers
         } = this.props;
 
+        const { t } = this.props;
+
         return (
             <div>
               Clicked: {numbers} times
@@ -41,6 +45,7 @@ class Counter extends Component
               <button onClick={incrementIfOdd}>Increment if odd</button>
               {' '}
               <button onClick={() => incrementAsync()}>Increment async</button>
+              <h1>{t('content.text')}</h1>
             </div>
         );
     }
