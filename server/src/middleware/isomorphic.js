@@ -89,9 +89,9 @@ function renderFullPage(html, initialState)
         	<title>Universal Redux Example</title>
           </head>
           <body>
-          <div id="root">${html}</div>
-        	<script>window.$REDUX_STATE = ${JSON.stringify(initialState)}</script>
-        	<script src=${src}></script>
+            <div id="root">${html}</div>
+            <script>window.$REDUX_STATE = ${JSON.stringify(initialState)}</script>
+            <script src=${src}></script>
           </body>
         </html>`
     );

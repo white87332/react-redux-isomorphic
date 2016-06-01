@@ -1,8 +1,11 @@
 import request from 'superagent';
+import { urlPath } from '../constants/config';
 
-export function dataGet(url)
+export function dataGet()
 {
-    return new Promise((resolve, reject) => {
+    let url = urlPath + "/api";
+    return new Promise((resolve, reject) =>
+    {
         request.get(url)
             .set('Accept', 'application/json')
             .end((err, res) =>

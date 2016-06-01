@@ -8,7 +8,6 @@ let path = (isNode) ? process.cwd() + "/common/routes/" : "./";
 export default function createRoutes(store)
 {
     return {
-        path: '/',
         component: Main,
         childRoutes: [
         {
@@ -24,7 +23,7 @@ export default function createRoutes(store)
                             ]);
                         }, 'main');
                         break;
-                    case '/counter':
+                    case '/':
                         require.ensure([], (require) =>
                         {
                             cb(null, [
