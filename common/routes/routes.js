@@ -43,6 +43,7 @@ export default function createRoutes(store)
                         }, 'notFound');
                 }
             }
-        }]
+        }],
+        indexRoute: { onEnter: (nextState, replace) => replace('/zh/counter') },
     };
 }
