@@ -2,7 +2,7 @@
 export default function fetchComponentData(dispatch, getComponent, params)
 {
 	let needs = [];
-	if(undefined !== getComponent.needs)
+	if(undefined !== getComponent && undefined !== getComponent.needs)
 	{
 		needs = getComponent.needs.map((data, key) => {
 			return data;

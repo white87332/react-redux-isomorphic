@@ -18,7 +18,7 @@ export default function(app)
     app.use(cors());
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({extended: true}));
-    // app.use(favicon(rootPath + '/favicon.ico'));
+    app.use(favicon(rootPath + '/asset/img/favicon.ico'));
     app.disable('x-powered-by');
     app.use(session(
     {

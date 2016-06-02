@@ -2,7 +2,7 @@ import i18n from 'i18next';
 
 i18n.init(
     {
-        whitelist: ['en'],
+        whitelist: ['en', 'zh'],
         fallbackLng: 'en',
 
         // have a common namespace used around the full app

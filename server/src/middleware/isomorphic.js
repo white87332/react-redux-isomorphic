@@ -33,7 +33,9 @@ export default function isomorphic(app)
     {
     	const store = finalCreateStore(rootReducer);
         const routes = createRoutes(store);
-        const locale = req.language;
+
+        let languageParam = req.url.split('/')[1];
+        let locale = languageParam;
         const resources = i18n.getResourceBundle(locale, 'common');
         const i18nClient = { locale, resources };
         const i18nServer = i18n.cloneInstance();
@@ -91,7 +93,7 @@ export default function isomorphic(app)
 
 function renderFullPage(html, initialState, i18nClient)
 {
-	let jsSrc = (process.env.NODE_ENV === 'development')? "./asset/js/bundle/bundle.js" : "./asset/js/bundle/bundle.min.js";
+	let jsSrc = (process.env.NODE_ENV === 'development')? "/asset/js/bundle/bundle.js" : "/asset/js/bundle/bundle.min.js";
     let cssLink = (process.env.NODE_ENV === 'development')? "" : "<link rel=stylesheet type='text/css' href='./asset/css/bundle/bundle.min.css'>";
     return (
         `<!doctype html>
