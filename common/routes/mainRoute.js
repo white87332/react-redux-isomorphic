@@ -39,5 +39,9 @@ export default (store) => (
                     }, 'notFound');
             }
         }
-    }]
+    }],
+    indexRoute:
+    {
+        onEnter: (nextState, replace) => replace('/zh/counter')
+    }
 });

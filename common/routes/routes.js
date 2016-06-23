@@ -25,6 +25,6 @@ export default function createRoutes(store)
         indexRoute:
         {
             onEnter: (nextState, replace) => replace('/zh/counter')
-        },
+        }
     };
 }
