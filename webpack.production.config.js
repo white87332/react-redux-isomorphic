@@ -43,7 +43,7 @@ module.exports = {
         },
         {
             test: /\.(jpe?g|png|gif|svg)$/i,
-            loader: 'url-loader?limit=8192&name=../common/asset/img/[name].[ext]'
+            loader: 'url-loader?limit=8192&name=../public/asset/img/[name].[ext]'
         }]
     },
     postcss: [

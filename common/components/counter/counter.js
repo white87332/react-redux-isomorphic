@@ -35,7 +35,7 @@ class Counter extends Component
         const { t } = this.props;
 
         return (
-            <div>
+            <div className="counter">
               Clicked: {numbers} times
               {' '}
               <button onClick={increment}>+</button>
@@ -46,6 +46,7 @@ class Counter extends Component
               {' '}
               <button onClick={() => incrementAsync()}>Increment async</button>
               <h1>{t('content.text')}</h1>
+
             </div>
         );
     }

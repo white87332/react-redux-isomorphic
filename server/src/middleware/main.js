@@ -12,13 +12,13 @@ import i18nMiddleware from 'i18next-express-middleware';
 export default function(app)
 {
     let rootPath = path.resolve('public');
-    app.use(compression({threshold:0}));
+    app.use(compression());
     app.use(i18nMiddleware.handle(i18n));
     app.use(express.static(rootPath));
     app.use(cors());
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({extended: true}));
-    app.use(favicon(rootPath + '/asset/img/favicon.ico'));
+    // app.use(favicon(rootPath + '/asset/img/favicon.ico'));
     app.disable('x-powered-by');
     app.use(session(
     {
