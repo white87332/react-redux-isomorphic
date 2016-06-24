@@ -108,10 +108,6 @@ function renderFullPage(html, initialState, i18nClient)
               <meta name="description" content="">
               <title>iSunTV</title>
             ${cssLink}
-            <!--[if lt IE 9]>
-                <script src="/asset/js/html5shiv/html5shiv.min.js"></script>
-                <script src="/asset/js/flexibility/flexibility.min.js"></script>
-            <![endif]-->
           </head>
           <body>
             <div id="root">${html}</div>
