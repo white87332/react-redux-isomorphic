@@ -101,9 +101,17 @@ function renderFullPage(html, initialState, i18nClient)
     return (
         `<!doctype html>
         <html lang="utf-8">
-          <head>
-        	<title>Universal Redux Example</title>
+          <html lang="en">
+              <meta charset="utf-8">
+              <meta http-equiv="X-UA-Compatible" content="IE=edge">
+              <meta name="viewport" content="width=device-width, initial-scale=1">
+              <meta name="description" content="">
+              <title>iSunTV</title>
             ${cssLink}
+            <!--[if lt IE 9]>
+                <script src="/asset/js/html5shiv/html5shiv.min.js"></script>
+                <script src="/asset/js/flexibility/flexibility.min.js"></script>
+            <![endif]-->
           </head>
           <body>
             <div id="root">${html}</div>
