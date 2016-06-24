@@ -4,6 +4,7 @@ import { RouterContext, match } from 'react-router';
 import { applyMiddleware, createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { combineReducers } from 'redux';
+import serialize from 'serialize-javascript';
 import promiseMiddleware from '../../../common/middleware/promiseMiddleware';
 import createRoutes from '../../../common/routes/routes';
 import rootReducer from '../../../common/reducers';
@@ -82,7 +83,7 @@ export default function isomorphic(app)
             				</Provider>
             			));
 
-            			let state = JSON.stringify( store.getState() );
+            			let state = store.getState();
             			let page = renderFullPage( initView, state, i18nClient );
             			return page;
             		})
@@ -106,8 +107,8 @@ function renderFullPage(html, initialState, i18nClient)
           </head>
           <body>
             <div id="root">${html}</div>
-            <script>window.$REDUX_STATE = ${JSON.stringify(initialState)}</script>
-            <script>window.$i18n = ${JSON.stringify(i18nClient)}</script>
+            <script>window.$REDUX_STATE = ${serialize(JSON.stringify(initialState))}</script>
+            <script>window.$i18n = ${serialize(i18nClient)}</script>
             <script src=${jsSrc}></script>
           </body>
         </html>`

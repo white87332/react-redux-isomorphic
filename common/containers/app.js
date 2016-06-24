@@ -8,8 +8,8 @@ import createRoutes from '../routes/routes';
 import { I18nextProvider } from 'react-i18next';
 import i18nClient from '../i18n/i18n-client';
 
-let state = (window.$REDUX_STATE)? JSON.parse(window.$REDUX_STATE) : null;
-let i18n = (window.$i18n)? window.$i18n : {};
+let state = JSON.parse(window.$REDUX_STATE);
+let i18n = window.$i18n;
 const store = configureStore(state);
 const routes = createRoutes(store);
 
