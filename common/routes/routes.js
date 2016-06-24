@@ -12,7 +12,7 @@ export default function createRoutes(store)
         component: Main,
         childRoutes: [
         {
-            getChildRoutes(location, cb)
+            getChildRoutes(partialNextState, cb)
             {
                 require.ensure([], (require) =>
                 {

@@ -9,7 +9,7 @@ export default (store) =>
 {
     return {
         component: Layout,
-        getChildRoutes(location, cb)
+        getChildRoutes(partialNextState, cb)
         {
             require.ensure([], (require) =>
             {

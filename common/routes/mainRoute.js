@@ -8,9 +8,9 @@ export default (store) => (
     path: ":lang",
     childRoutes: [
     {
-        getChildRoutes(location, cb)
+        getChildRoutes(partialNextState, cb)
         {
-            switch (location.pathname)
+            switch (partialNextState.location.pathname)
             {
                 case '/zh/posts':
                 case '/en/posts':
