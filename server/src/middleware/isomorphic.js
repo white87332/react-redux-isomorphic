@@ -43,8 +43,7 @@ export default function isomorphic(app)
             const routes = createRoutes(store);
 
             // i18next
-            let languageParam = req.url.split('/')[1];
-            let locale = languageParam;
+            let locale = req.url.split('/')[1];
             const resources = i18n.getResourceBundle(locale, 'common');
             const i18nClient = { locale, resources };
             const i18nServer = i18n.cloneInstance();
