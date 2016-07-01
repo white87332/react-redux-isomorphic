@@ -15,7 +15,8 @@
   "keywords": [
     "react",
     "server side render",
-    "isomorphic"
+    "isomorphic",
+    "i18next"
   ],
   "license": "MIT",
   "bugs": {
