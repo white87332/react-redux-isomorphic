@@ -6,9 +6,7 @@ class Layout extends Component
     {
         return (
             <div className="layout">
-                123
                 {this.props.children}
-                456
             </div>
         );
     }

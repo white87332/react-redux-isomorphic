@@ -36,17 +36,17 @@ class Counter extends Component
 
         return (
             <div className="counter">
-              Clicked: {numbers} times
-              {' '}
-              <button onClick={increment}>+</button>
-              {' '}
-              <button onClick={decrement}>-</button>
-              {' '}
-              <button onClick={incrementIfOdd}>Increment if odd</button>
-              {' '}
-              <button onClick={() => incrementAsync()}>Increment async</button>
-              <h1>{t('content.text')}</h1>
-
+                <h1>{t('content.text')}</h1>
+                Clicked: {numbers} times
+                {' '}
+                <button onClick={increment}>+</button>
+                {' '}
+                <button onClick={decrement}>-</button>
+                {' '}
+                <button onClick={incrementIfOdd}>Increment if odd</button>
+                {' '}
+                <button onClick={() => incrementAsync()}>Increment async</button>
+             
             </div>
         );
     }
