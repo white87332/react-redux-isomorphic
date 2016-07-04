@@ -1,6 +1,7 @@
 var path = require('path');
 var webpack = require('webpack');
 var autoprefixer = require('autoprefixer');
+var flexibility = require('postcss-flexibility');
 
 module.exports = {
     entry:
@@ -54,7 +55,8 @@ module.exports = {
         }]
     },
     postcss: [
-        autoprefixer
+        autoprefixer,
+        flexibility
     ],
     plugins: [
         new webpack.optimize.OccurenceOrderPlugin(),
