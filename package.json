@@ -37,12 +37,12 @@
     "i18next-express-middleware": "^1.0.1",
     "i18next-node-fs-backend": "^0.1.2",
     "immutable": "^3.8.1",
-    "moment": "^2.13.0",
+    "moment": "^2.14.1",
     "node-uuid": "^1.4.7",
     "normalize.css": "^4.2.0",
-    "react": "^15.2.0",
-    "react-dom": "^15.2.0",
-    "react-i18next": "^1.5.2",
+    "react": "^15.2.1",
+    "react-dom": "^15.2.1",
+    "react-i18next": "^1.6.1",
     "react-redux": "^4.4.5",
     "react-router": "^2.5.2",
     "redux": "^3.5.2",
@@ -51,7 +51,7 @@
     "serve-favicon": "^2.3.0",
     "superagent": "^2.0.0",
     "winston": "^2.2.0",
-    "winston-daily-rotate-file": "^1.1.4"
+    "winston-daily-rotate-file": "^1.1.5"
   },
   "devDependencies": {
     "autoprefixer": "^6.3.7",
