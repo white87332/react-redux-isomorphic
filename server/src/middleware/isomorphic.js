@@ -74,6 +74,8 @@ export default function isomorphic(app)
                 let components = renderProps.components[renderProps.components.length - 1].WrappedComponent;
                 fetchComponentData( store.dispatch, components, renderProps.params)
             		.then(() => {
+                        // console.log(req);
+                        // console.log(req.sessionID, req.sessionStore.sessions);
             			const initView = renderToString((
             				<Provider store={store}>
                                 <I18nextProvider i18n={i18nServer}>

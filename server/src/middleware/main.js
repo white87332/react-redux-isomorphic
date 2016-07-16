@@ -34,7 +34,7 @@ export default function(app)
     }));
     app.use((req, res, next) =>
     {
-        // res.header('Access-Control-Allow-Origin', '*');
+        // res.header('Access-Control-Allow-Origin', 'http://127.0.0.1:3000');
         res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With');
         res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
         // res.header('Access-Control-Allow-Credentials', 'true');

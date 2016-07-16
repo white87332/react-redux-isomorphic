@@ -30,6 +30,13 @@ class Posts extends Component
         super(props);
     }
 
+    componentDidMount()
+    {
+        // let { dispatch, postsActions } = this.props;
+        //
+        // dispatch(postsActions.postsList());
+    }
+
     render()
     {
         const { posts } = this.props;
