@@ -24,6 +24,8 @@ export default function(app)
     {
         secret: uuid.v1(),
         resave: true,
-        saveUninitialized: true
+        saveUninitialized: true,
+        httpOnly: true,
+        secure: true
     }));
 }
