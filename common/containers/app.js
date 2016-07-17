@@ -8,6 +8,11 @@ import createRoutes from '../routes/routes';
 import { I18nextProvider } from 'react-i18next';
 import i18nClient from '../i18n/i18n-client';
 
+if (process.env.NODE_ENV !== 'production')
+{
+ 	window.Perf = require('react-addons-perf');
+}
+
 let state = JSON.parse(window.$REDUX_STATE);
 let i18n = window.$i18n;
 const store = configureStore(state);
