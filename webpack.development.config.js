@@ -8,6 +8,7 @@ module.exports = {
     {
         app: [
             'webpack-hot-middleware/client',
+            'babel-polyfill',
             path.resolve(__dirname, 'common') + '/containers/app'
         ]
     },
