@@ -19,13 +19,13 @@ let httpPort = process.env.PORT || 3000;
 let httpsPort = process.env.HTTPS_PORT || 3443;
 
 // http
-let httpServer = http.createServer(app);
+http.createServer(app).listen(httpPort);
+console.log('http happens on port ' + httpPort);
 
 // https
 let pfx, pwd, httpsServer;
 let pfxExists = fs.existsSync('./cert/server.pfx');
 let pwExists = fs.existsSync('./cert/pw.txt');
-
 if (pfxExists && pwExists)
 {
     let options = {
@@ -33,17 +33,7 @@ if (pfxExists && pwExists)
         passphrase: fs.readFileSync('../cert/pw.txt')
     };
 
-    httpsServer = https.createServer(options, app);
-}
-
-// http start
-httpServer.listen(httpPort);
-console.log('http happens on port ' + httpPort);
-
-// https start
-if(pfxExists && pwExists)
-{
-    httpsServer.listen(httpsPort);
+    https.createServer(options, app).listen(httpsPort);
     console.log('https happens on port ' + httpsPort);
 }
 
