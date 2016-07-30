@@ -43,7 +43,7 @@ export default function isomorphic(app)
             const routes = createRoutes(store);
 
             // i18next
-            let locale = req.url.split('/')[1];
+            let locale = req.url.split('/')[1]; // req.locale => user locale;
             const resources = i18n.getResourceBundle(locale, 'common');
             const i18nClient = { locale, resources };
             const i18nServer = i18n.cloneInstance();
@@ -67,15 +67,11 @@ export default function isomorphic(app)
         			return res.status(404).send( 'Not found' );
         		}
 
-                // 真正拿 data 的點是在它的 componentDidMount() 裡面。
-                // 在大部份的情況，我們會需要一個 router 來控制 url 和對應 component 的關係。
-                // 所以我的做法是，在每個 routing 的 leaf node (如果有巢狀 routing 的話，就是最裡面的那個) 放一個 static method fetchData(),
-                // 這樣的話，在 server 我們就可以用 react-router 去 match 最後被 route 到的 component, 進而得到 data 的進入點。
+                // routing's leaf node put a static method fetchData(),
+                // in server,  we can use react-router's match  to get component and to execute static function
                 let components = renderProps.components[renderProps.components.length - 1].WrappedComponent;
                 fetchComponentData( store.dispatch, components, renderProps.params)
             		.then(() => {
-                        // console.log(req);
-                        // console.log(req.sessionID, req.sessionStore.sessions);
             			const initView = renderToString((
             				<Provider store={store}>
                                 <I18nextProvider i18n={i18nServer}>

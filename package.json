@@ -25,7 +25,7 @@
   "homepage": "",
   "dependencies": {
     "babel-polyfill": "^6.9.1",
-    "babel-register": "^6.9.0",
+    "babel-register": "^6.11.6",
     "body-parser": "^1.15.2",
     "compression": "^1.6.2",
     "connect-multiparty": "^2.0.0",
@@ -33,7 +33,7 @@
     "detect-node": "^2.0.3",
     "express": "^4.14.0",
     "express-session": "^1.14.0",
-    "helmet": "^2.1.1",
+    "helmet": "^2.1.2",
     "i18next": "^3.4.1",
     "i18next-express-middleware": "^1.0.1",
     "i18next-node-fs-backend": "^0.1.2",
@@ -41,19 +41,19 @@
     "moment": "^2.14.1",
     "node-uuid": "^1.4.7",
     "normalize.css": "^4.2.0",
-    "react": "^15.2.1",
-    "react-addons-update": "^15.2.1",
+    "react": "^15.3.0",
+    "react-addons-update": "^15.3.0",
     "react-cookie": "^0.4.7",
-    "react-dom": "^15.2.1",
+    "react-dom": "^15.3.0",
     "react-i18next": "^1.6.3",
     "react-redux": "^4.4.5",
-    "react-router": "^2.6.0",
+    "react-router": "^2.6.1",
     "redux": "^3.5.2",
     "serialize-javascript": "^1.3.0",
     "serve-favicon": "^2.3.0",
     "superagent": "^2.1.0",
     "winston": "^2.2.0",
-    "winston-daily-rotate-file": "^1.1.5"
+    "winston-daily-rotate-file": "^1.2.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.3.7",
@@ -78,13 +78,13 @@
     "node-sass": "^3.8.0",
     "postcss-flexibility": "^1.1.0",
     "postcss-loader": "^0.8.2",
-    "react-addons-perf": "^15.2.1",
+    "react-addons-perf": "^15.3.0",
     "react-transform-hmr": "^1.0.4",
     "sass-loader": "^3.2.3",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "webpack": "^1.13.1",
     "webpack-dev-middleware": "^1.6.1",
-    "webpack-hot-middleware": "^2.12.1"
+    "webpack-hot-middleware": "^2.12.2"
   }
 }
