@@ -12,7 +12,6 @@ import fetchComponentData from '../../../common/utils/fetchComponentData';
 import { I18nextProvider } from 'react-i18next';
 import i18n from '../i18n/i18n-server';
 
-
 const finalCreateStore = applyMiddleware(promiseMiddleware)(createStore);
 
 export default function isomorphic(app)
@@ -42,15 +41,8 @@ export default function isomorphic(app)
             const store = finalCreateStore(rootReducer);
             const routes = createRoutes(store);
 
-            // i18next
-            let locale = req.url.split('/')[1]; // req.locale => user locale;
-            const resources = i18n.getResourceBundle(locale, 'common');
-            const i18nClient = { locale, resources };
-            const i18nServer = i18n.cloneInstance();
-            i18nServer.changeLanguage(locale);
-
             // react-router
-        	match( {routes, location: req.url}, ( error, redirectLocation, renderProps ) =>
+        	match({ routes, location: req.url }, ( error, redirectLocation, renderProps ) =>
             {
         		if(error)
                 {
@@ -66,6 +58,13 @@ export default function isomorphic(app)
                 {
         			return res.status(404).send( 'Not found' );
         		}
+
+                // i18next
+                let locale = (undefined !== renderProps.params.lang)? renderProps.params.lang : req.locale;
+                const resources = i18n.getResourceBundle(locale, 'common');
+                const i18nClient = { locale, resources };
+                const i18nServer = i18n.cloneInstance();
+                i18nServer.changeLanguage(locale);
 
                 // routing's leaf node put a static method fetchData(),
                 // in server,  we can use react-router's match  to get component and to execute static function
@@ -104,7 +103,7 @@ function renderFullPage(html, initialState, i18nClient)
               <meta name="viewport" content="width=device-width, initial-scale=1">
               <meta name="description" content="">
               <title>react-redux-isomorphic</title>
-            ${cssLink}
+              ${cssLink}
           </head>
           <body>
             <div id="root">${html}</div>

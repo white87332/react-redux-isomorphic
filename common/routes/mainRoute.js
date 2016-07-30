@@ -10,10 +10,11 @@ export default (store) => (
     {
         getChildRoutes(partialNextState, cb)
         {
-            switch (partialNextState.location.pathname)
+            let pathname = partialNextState.location.pathname;
+            let nowPath = (undefined !== partialNextState.params.lang)? pathname.split("/")[2] : pathname;
+            switch (nowPath)
             {
-                case '/zh/posts':
-                case '/en/posts':
+                case 'posts':
                     require.ensure([], (require) =>
                     {
                         cb(null, [
@@ -21,8 +22,7 @@ export default (store) => (
                         ]);
                     }, 'main');
                     break;
-                case '/zh/counter':
-                case '/en/counter':
+                case 'counter':
                     require.ensure([], (require) =>
                     {
                         cb(null, [
