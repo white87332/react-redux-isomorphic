@@ -1,7 +1,7 @@
-import React, { Component, PropTypes} from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 
-class NotFound extends Component
+class NotFound extends React.Component
 {
     render()
     {

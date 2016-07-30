@@ -24,4 +24,4 @@ gulp.task('spriteImg', function()
     spriteData.css.pipe(gulp.dest('./public/asset/css/sprite'));
 });
 
-gulp.task('default', ['spriteSvg']);
+gulp.task('default', ['spriteImg']);

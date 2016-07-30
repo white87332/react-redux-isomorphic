@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Layout extends Component
+class Layout extends React.Component
 {
     render()
     {

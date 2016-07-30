@@ -1,4 +1,4 @@
-import React, { Component, PropTypes} from 'react';
+import React from 'react';
 import { bindActionCreators } from 'redux';
 import * as postsActions from '../../actions/postsActions';
 import { connect } from 'react-redux';
@@ -18,7 +18,7 @@ function mapDispatchToProps(dispatch)
     };
 }
 
-class Posts extends Component
+class Posts extends React.Component
 {
     // server 端判斷 needs 觸發取得 initial data
     static needs = [
@@ -54,8 +54,8 @@ class Posts extends Component
 }
 
 Posts.propTypes = {
-    posts: PropTypes.object.isRequired,
-    postsActions: PropTypes.object.isRequired
+    posts: React.PropTypes.object.isRequired,
+    postsActions: React.PropTypes.object.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Posts);

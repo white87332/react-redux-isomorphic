@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as CounterActions from '../../actions/counter.js';
@@ -17,7 +17,7 @@ function mapDispatchToProps(dispatch)
 }
 
 @translate(['common'])
-class Counter extends Component
+class Counter extends React.Component
 {
     constructor(props, context)
     {
@@ -51,9 +51,9 @@ class Counter extends Component
 }
 
 Counter.propTypes = {
-    increment      : PropTypes.func.isRequired,
-    decrement      : PropTypes.func.isRequired,
-    numbers        : PropTypes.number.isRequired
+    increment      : React.PropTypes.func.isRequired,
+    decrement      : React.PropTypes.func.isRequired,
+    numbers        : React.PropTypes.number.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Counter);
