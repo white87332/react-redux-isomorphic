@@ -1,7 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Router, browserHistory, match } from 'react-router';
-import Immutable from 'immutable';
 import { Provider } from 'react-redux';
 import configureStore from '../store/configureStore.js';
 import createRoutes from '../routes/routes';
@@ -15,6 +14,7 @@ if (process.env.NODE_ENV !== 'production')
 
 let state = JSON.parse(window.$REDUX_STATE);
 let i18n = window.$i18n;
+
 const store = configureStore(state);
 const routes = createRoutes(store);
 
