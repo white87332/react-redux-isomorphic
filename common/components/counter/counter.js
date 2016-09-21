@@ -16,7 +16,7 @@ function mapDispatchToProps(dispatch)
     return bindActionCreators(CounterActions, dispatch);
 }
 
-@translate([], { wait: true })
+@translate(['common', 'counter'], { wait: true })
 class Counter extends React.Component
 {
     static translate = ['common', 'counter'];
@@ -41,6 +41,7 @@ class Counter extends React.Component
         return (
             <div className="counter">
                 <h1>{t('content.text')}</h1>
+                <h1>{t('content.text2')}</h1>
                 Clicked: {numbers} times
                 {' '}
                 <button onClick={increment}>+</button>
