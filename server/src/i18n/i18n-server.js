@@ -10,7 +10,7 @@ i18n.use(Backend)
         fallbackLng: 'en',
 
         // have a common namespace used around the full app
-        ns: ['common'],
+        ns: ['common', 'counter'],
         defaultNS: 'common',
 
         debug: false,

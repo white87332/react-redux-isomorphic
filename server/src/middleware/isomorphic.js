@@ -11,6 +11,7 @@ import rootReducer from '../../../common/reducers';
 import fetchComponentData from '../../../common/utils/fetchComponentData';
 import { I18nextProvider } from 'react-i18next';
 import i18n from '../i18n/i18n-server';
+import { merge } from 'lodash';
 
 const finalCreateStore = applyMiddleware(promiseMiddleware)(createStore);
 
@@ -59,16 +60,17 @@ export default function isomorphic(app)
         			return res.status(404).send( 'Not found' );
         		}
 
+                // routing's leaf node put a static method fetchData(),
+                // in server,  we can use react-router's match  to get component and to execute static function
+                let components = renderProps.components[renderProps.components.length - 1].WrappedComponent;
+
                 // i18next
                 let locale = (undefined !== renderProps.params.lang)? renderProps.params.lang : req.locale;
-                const resources = i18n.getResourceBundle(locale, 'common');
+                const resources = i18nResource(locale, components.translate);
                 const i18nClient = { locale, resources };
                 const i18nServer = i18n.cloneInstance();
                 i18nServer.changeLanguage(locale);
 
-                // routing's leaf node put a static method fetchData(),
-                // in server,  we can use react-router's match  to get component and to execute static function
-                let components = renderProps.components[renderProps.components.length - 1].WrappedComponent;
                 fetchComponentData( store.dispatch, components, renderProps.params)
             		.then(() => {
             			const initView = renderToString((
@@ -88,6 +90,17 @@ export default function isomorphic(app)
         	});
         }
     });
+}
+
+function i18nResource(locale, translate)
+{
+    let obj;
+    for (let val of translate)
+    {
+        let resource = i18n.getResourceBundle(locale, val);
+        obj = merge(obj, resource);
+    }
+    return obj;
 }
 
 function renderFullPage(html, initialState, i18nClient)
