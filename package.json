@@ -43,7 +43,7 @@
     "i18next-express-middleware": "^1.0.2",
     "i18next-node-fs-backend": "^0.1.2",
     "lodash": "^4.16.1",
-    "moment": "^2.15.0",
+    "moment": "^2.15.1",
     "node-uuid": "^1.4.7",
     "normalize.css": "^4.2.0",
     "react": "^15.3.2",

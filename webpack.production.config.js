@@ -40,7 +40,7 @@ module.exports = {
             test: /\.css|\.scss$/,
             loader: ExtractTextPlugin.extract(
                 "style-loader",
-                "css-loader!sass-loader!postcss-loader"
+                "css-loader!sass-loader?outputStyle=compressed!postcss-loader"
             )
         },
         {
