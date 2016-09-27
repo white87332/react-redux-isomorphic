@@ -66,7 +66,7 @@ export default function isomorphic(app)
 
                 // i18next
                 let locale = (undefined !== renderProps.params.lang)? renderProps.params.lang : req.locale;
-                const resources = i18nResource(locale, components.translate);
+                const resources = i18nResource(locale, components.locales);
                 const i18nClient = { locale, resources };
                 const i18nServer = i18n.cloneInstance();
                 i18nServer.changeLanguage(locale);
@@ -92,10 +92,10 @@ export default function isomorphic(app)
     });
 }
 
-function i18nResource(locale, translate)
+function i18nResource(locale, locales)
 {
     let obj;
-    for (let val of translate)
+    for (let val of locales)
     {
         let resource = i18n.getResourceBundle(locale, val);
         obj = merge(obj, resource);

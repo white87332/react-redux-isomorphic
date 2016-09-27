@@ -19,7 +19,7 @@ function mapDispatchToProps(dispatch)
 @translate(['common', 'counter'], { wait: true })
 class Counter extends React.Component
 {
-    static translate = ['common', 'counter'];
+    static locales = ['common', 'counter'];
 
     constructor(props, context)
     {
