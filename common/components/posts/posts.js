@@ -1,7 +1,8 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
-import * as postsActions from '../../actions/postsActions';
 import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
+import * as postsActions from '../../actions/postsActions';
 
 function mapStateToProps(state)
 {
@@ -13,13 +14,15 @@ function mapStateToProps(state)
 function mapDispatchToProps(dispatch)
 {
     return {
-        dispatch,
-        postsActions
+        postsActions: bindActionCreators(postsActions, dispatch)
     };
 }
 
+@translate(['common'], { wait: true })
 class Posts extends React.Component
 {
+    static locales = ['common'];
+
     // server 端判斷 needs 觸發取得 initial data
     static needs = [
         postsActions.postsList
