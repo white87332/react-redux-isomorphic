@@ -15,8 +15,8 @@ module.exports = {
     output:
     {
         path: path.resolve(__dirname, 'public'),
-        filename: '/asset/js/bundle/bundle.min.js',
-        chunkFilename: "/asset/js/bundle/chunk.[name].min.js"
+        filename: '/asset/js/bundle/bundle.min.[chunkFilename:8].js',
+        chunkFilename: "/asset/js/bundle/chunk.[name].[chunkFilename:8].min.js"
     },
     module:
     {
@@ -53,6 +53,8 @@ module.exports = {
         flexibility
     ],
     plugins: [
+        new webpack.optimize.OccurrenceOrderPlugin(),
+        new webpack.optimize.DedupePlugin(),
         new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false }}),
         new ExtractTextPlugin('./asset/css/bundle/bundle.min.css', { allChunks: true }),
         new webpack.DefinePlugin({ 'process.env.NODE_ENV': '"production"' })
