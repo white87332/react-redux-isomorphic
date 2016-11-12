@@ -21,7 +21,7 @@ export default function isomorphic(app)
     if(process.env.NODE_ENV === 'development')
     {
     	let webpack = require('webpack');
-    	const config = require('../../../webpack.development.config');
+    	const config = require('../../../webpack.client.dev.config');
     	const compiler = webpack(config);
     	let webpackDevMiddleware = require('webpack-dev-middleware');
     	let webpackHotMiddleware = require('webpack-hot-middleware');
