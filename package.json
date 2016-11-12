@@ -2,11 +2,10 @@
   "name": "react-redux-isomprphic",
   "version": "0.5.0",
   "description": "An isomorphic example built with react, redux and react-router",
-  "main": "dev.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=development node -r 'babel-register' ./server/server.js",
     "prod": "cross-env node ./build/server.js",
-    "build": "NODE_ENV=production webpack -p --config webpack.server.prod.config.js &&  webpack -p --config webpack.client.prod.config.js"
+    "build": "NODE_ENV=production webpack -p --config webpack.server.prod.config.js && webpack -p --config webpack.client.prod.config.js"
   },
   "repository": {
     "type": "git",
@@ -35,6 +34,7 @@
     "compression": "^1.6.2",
     "connect-multiparty": "^2.0.0",
     "cookie-parser": "^1.4.3",
+    "cross-env": "^3.1.3",
     "detect-node": "^2.0.3",
     "express": "^4.14.0",
     "express-session": "^1.14.2",
