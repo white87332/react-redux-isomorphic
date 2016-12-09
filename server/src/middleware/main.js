@@ -2,7 +2,6 @@ import express from 'express';
 import session from 'express-session';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
-import favicon from 'serve-favicon';
 import path from 'path';
 import compression from 'compression';
 import helmet from 'helmet';
@@ -22,7 +21,6 @@ export default function(app)
     {
         extended: true
     }));
-    app.use(favicon(rootPath + '/asset/img/favicon.ico'));
     app.use(cookieParser());
     app.use(session(
     {

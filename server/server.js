@@ -1,7 +1,7 @@
 import express from 'express';
 import fs from 'fs';
 import http from 'http';
-import https from 'https';
+import https from 'spdy';
 import main from './src/middleware/main';
 import routes from './src/middleware/routes';
 import isomorphic from './src/middleware/isomorphic';
@@ -23,14 +23,11 @@ http.createServer(app).listen(httpPort);
 console.log('http happens on port ' + httpPort);
 
 // https
-let pfx, pwd, httpsServer;
-let pfxExists = fs.existsSync('./cert/server.pfx');
-let pwExists = fs.existsSync('./cert/pw.txt');
-if (pfxExists && pwExists)
+if(fs.existsSync('./cert/server.pfx'))
 {
     let options = {
         pfx: fs.readFileSync('../cert/server.pfx'),
-        passphrase: fs.readFileSync('../cert/pw.txt')
+        passphrase: ''
     };
 
     https.createServer(options, app).listen(httpsPort);
