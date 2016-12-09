@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "An isomorphic example built with react, redux and react-router",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development node -r babel-register ./server/index.js",
+    "dev": "cross-env NODE_ENV=development node -r babel-register ./server/server.js",
     "prod": "cross-env node ./build/server.js",
     "build": "NODE_ENV=production webpack -p --config webpack.server.prod.config.js && webpack -p --config webpack.client.prod.config.js"
   },
