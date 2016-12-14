@@ -65,7 +65,16 @@ export default function isomorphic(app)
                 let components = renderProps.components[renderProps.components.length - 1].WrappedComponent;
 
                 // i18next
-                let locale = (undefined !== renderProps.params.lang)? renderProps.params.lang : req.locale;
+                let locale = (req.locale.indexOf("zh") === -1 && req.locale.indexOf("cn") === -1)? "zh" : req.locale;
+                if(undefined !== req.cookies.i18nextLang)
+                {
+                    locale = req.cookies.i18nextLang;
+                }
+                else
+                {
+                    res.cookie('i18nextLang', locale);
+                }
+
                 const resources = i18nResource(locale, components.locales);
                 const i18nClient = { locale, resources };
                 const i18nServer = i18n.cloneInstance();

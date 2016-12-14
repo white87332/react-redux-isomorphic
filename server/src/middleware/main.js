@@ -6,6 +6,7 @@ import path from 'path';
 import compression from 'compression';
 import helmet from 'helmet';
 import uuid from 'node-uuid';
+import favicon from 'serve-favicon';
 import i18n from '../i18n/i18n-server';
 import i18nMiddleware from 'i18next-express-middleware';
 
@@ -21,6 +22,7 @@ export default function(app)
     {
         extended: true
     }));
+    app.use(favicon(rootPath + '/asset/img/favicon.ico'));
     app.use(cookieParser());
     app.use(session(
     {

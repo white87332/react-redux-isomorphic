@@ -14,13 +14,11 @@ else
 
 export default (store) => (
 {
-    path: ":lang",
     childRoutes: [
     {
         getChildRoutes(partialNextState, cb)
         {
-            let pathname = partialNextState.location.pathname;
-            let nowPath = (undefined !== partialNextState.params.lang)? pathname.split("/")[2] : pathname;
+            let nowPath = partialNextState.location.pathname.split("/")[1];
             switch (nowPath)
             {
                 case 'posts':
@@ -31,26 +29,18 @@ export default (store) => (
                         ]);
                     }, 'main');
                     break;
-                case 'counter':
+                default:
                     require.ensure([], (require) =>
                     {
                         cb(null, [
                             require(path + "layoutRoute").default(store)
                         ]);
                     }, 'main');
-                    break;
-                default:
-                    require.ensure([], (require) =>
-                    {
-                        cb(null, [
-                            require(path + "notFoundRoute").default(store)
-                        ]);
-                    }, 'notFound');
             }
         }
     }],
     indexRoute:
     {
-        onEnter: (nextState, replace) => replace('/zh/counter')
+        onEnter: (nextState, replace) => replace('/')
     }
 });

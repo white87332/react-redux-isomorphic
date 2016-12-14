@@ -16,7 +16,7 @@ function mapDispatchToProps(dispatch)
     return bindActionCreators(CounterActions, dispatch);
 }
 
-@translate(['common', 'counter'], { wait: true })
+@translate(['common'], { wait: true })
 class Counter extends React.Component
 {
     static locales = ['common', 'counter'];

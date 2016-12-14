@@ -16,7 +16,6 @@ else
 export default function createRoutes(store)
 {
     return {
-        path: "/",
         component: Main,
         childRoutes: [
         {
@@ -29,10 +28,6 @@ export default function createRoutes(store)
                     ]);
                 }, 'main');
             }
-        }],
-        indexRoute:
-        {
-            onEnter: (nextState, replace) => replace('/zh/counter')
-        }
+        }]
     };
 }
