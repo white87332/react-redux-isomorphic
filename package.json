@@ -50,7 +50,7 @@
     "react-addons-update": "^15.4.1",
     "react-cookie": "^0.4.9",
     "react-dom": "^15.4.1",
-    "react-i18next": "^1.10.1",
+    "react-i18next": "^1.11.0",
     "react-redux": "^5.0.1",
     "react-router": "^3.0.0",
     "redux": "^3.6.0",
@@ -64,7 +64,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^6.5.4",
-    "babel-core": "^6.20.0",
+    "babel-core": "^6.21.0",
     "babel-loader": "^6.2.10",
     "babel-plugin-react-transform": "^2.0.2",
     "babel-plugin-transform-async-to-generator": "^6.16.0",
