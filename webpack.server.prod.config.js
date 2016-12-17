@@ -13,11 +13,10 @@ function getExternals()
 
 module.exports = {
     target: 'node',
-    devtool: 'inline-source-map',
-    entry: path.join(process.cwd(), 'server/server'),
+    entry: path.join(process.cwd(), 'server/index'),
     output: {
         path: path.join(process.cwd(), 'build'),
-        filename: 'server.js',
+        filename: 'index.js',
         chunkFilename: "[name].js"
     },
     externals: getExternals(),
@@ -44,10 +43,6 @@ module.exports = {
         ]
     },
     plugins: [
-        new webpack.BannerPlugin('require("source-map-support").install();', {
-            raw: true,
-            entryOnly: false
-        }),
         new webpack.IgnorePlugin(/\.(css|less|scss|svg|png|jpe?g|png)$/),
         new webpack.optimize.UglifyJsPlugin({
             compress: {

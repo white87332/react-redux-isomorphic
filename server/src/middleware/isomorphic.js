@@ -17,18 +17,6 @@ const finalCreateStore = applyMiddleware(promiseMiddleware)(createStore);
 
 export default function isomorphic(app)
 {
-    // initialize webpack HMR
-    if(process.env.NODE_ENV === 'development')
-    {
-    	let webpack = require('webpack');
-    	const config = require('../../../webpack.client.dev.config');
-    	const compiler = webpack(config);
-    	let webpackDevMiddleware = require('webpack-dev-middleware');
-    	let webpackHotMiddleware = require('webpack-hot-middleware');
-    	app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath }));
-    	app.use(webpackHotMiddleware(compiler));
-    }
-
     // server rendering
     app.use((req, res, next) =>
     {
@@ -80,7 +68,7 @@ export default function isomorphic(app)
                 const i18nServer = i18n.cloneInstance();
                 i18nServer.changeLanguage(locale);
 
-                fetchComponentData( store.dispatch, components, renderProps.params)
+                fetchComponentData(store.dispatch, components, renderProps.params)
             		.then(() => {
             			const initView = renderToString((
             				<Provider store={store}>
@@ -94,8 +82,12 @@ export default function isomorphic(app)
             			let page = renderFullPage( initView, state, i18nClient );
             			return page;
             		})
-            		.then( page => res.status(200).send(page) )
-            		.catch( err => res.end(err.message) );
+            		.then((page) => {
+                        res.status(200).send(page);
+                    })
+            		.catch((err) => {
+                        res.end(err.message);
+                    });
         	});
         }
     });

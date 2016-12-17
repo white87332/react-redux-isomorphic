@@ -9,10 +9,10 @@ import globalSet from './src/middleware/globalSet.js';
 
 const app = express();
 
+globalSet();
 main(app);
 isomorphic(app);
 routes(app);
-globalSet();
 
 // port
 let httpPort = process.env.PORT || 3000;

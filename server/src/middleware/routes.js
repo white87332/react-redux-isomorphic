@@ -3,12 +3,7 @@ import fs from 'fs';
 import { isArray } from 'util';
 import Result from '../class/result';
 import path from 'path';
-import multipart from 'connect-multiparty';
-
 let apiPath = path.resolve(__dirname, "../api");
-let uploadOption = {
-    uploadDir: path.resolve(__dirname, "../../../uploads")
-};
 
 export default async function(app)
 {
@@ -41,14 +36,7 @@ function routesSet(app)
                         {
                             let url = route.url.toLowerCase();
                             let method = route.method.toLowerCase();
-                            if (method === 'post')
-                            {
-                                app[route.method.toLowerCase()](url, multipart(uploadOption), apiObj.exec);
-                            }
-                            else
-                            {
-                                app[route.method.toLowerCase()](url, apiObj.exec);
-                            }
+                            app[route.method.toLowerCase()](url, apiObj.exec);
                         }
                     }
                     else if (initExec !== undefined && initExec)
