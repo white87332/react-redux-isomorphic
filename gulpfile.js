@@ -9,4 +9,4 @@ gulp.task('imageMin', function()
 });
 
 
-gulp.task('default', ['spriteImg']);
+gulp.task('default', ['imageMin']);
