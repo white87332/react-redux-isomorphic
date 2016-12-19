@@ -38,7 +38,10 @@ if(fs.existsSync('./cert/server.pfx'))
 if(!fs.existsSync('./logs'))
 {
     fs.mkdir('./logs', (err) => {
-        console.log(err);
+        if(err === null)
+        {
+            console.log("mkdir logs");
+        }
     });
 }
 
@@ -46,7 +49,10 @@ if(!fs.existsSync('./logs'))
 if(!fs.existsSync('./uploads'))
 {
     fs.mkdir('./uploads', (err) => {
-        console.log(err);
+        if(err === null)
+        {
+            console.log("mkdir uploads");
+        }
     });
 }
 
