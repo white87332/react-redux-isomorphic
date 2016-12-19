@@ -34,6 +34,22 @@ if(fs.existsSync('./cert/server.pfx'))
     console.log('https happens on port ' + httpsPort);
 }
 
+// mkfir logs
+if(!fs.existsSync('./logs'))
+{
+    fs.mkdir('./logs', (err) => {
+        console.log(err);
+    });
+}
+
+// mkfir uploads
+if(!fs.existsSync('./uploads'))
+{
+    fs.mkdir('./uploads', (err) => {
+        console.log(err);
+    });
+}
+
 process.on('uncaughtException', evt =>
 {
 	console.log( 'uncaughtException: ', evt );
