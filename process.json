@@ -1,9 +1,9 @@
 {
     "name": "app",
-    "script": "build/index.js",
+    "script": "build/server.js",
     "log_date_format": "YYYY-MM-DD HH:mm Z",
     "watch": true,
     "ignore_watch": [
-        "[\\/\\\\]\\./", "logs", "upload", "cert", "node_modules", ".git"
+        "[\\/\\\\]\\./", "logs", "uploads", "cert", "node_modules", ".git"
     ]
 }

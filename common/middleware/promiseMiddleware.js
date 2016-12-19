@@ -12,7 +12,7 @@ export default function promiseMiddleware(objMethods)
 
         // 這裏聰明的將外界傳入的變數，透過 destructuring 轉為常數
         // 因此 middleware 可適用於各種不同情境
-        const [REQUEST, SUCCESS, ERROR] = types;
+        const [ REQUEST, SUCCESS, ERROR ] = types;
 
         // 進行第一次的廣播，讓畫面立即更新，也就是 optimistic update
         next({ ...rest, type: REQUEST });

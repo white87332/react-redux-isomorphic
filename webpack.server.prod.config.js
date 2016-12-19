@@ -13,10 +13,10 @@ function getExternals()
 
 module.exports = {
     target: 'node',
-    entry: path.join(process.cwd(), 'server/index'),
+    entry: path.join(process.cwd(), 'server/server'),
     output: {
         path: path.join(process.cwd(), 'build'),
-        filename: 'index.js',
+        filename: 'server.js',
         chunkFilename: "[name].js"
     },
     externals: getExternals(),
@@ -44,10 +44,6 @@ module.exports = {
     },
     plugins: [
         new webpack.IgnorePlugin(/\.(css|less|scss|svg|png|jpe?g|png)$/),
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false
-            }
-        })
+        new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false } })
     ]
 };

@@ -56,7 +56,8 @@ module.exports = {
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.optimize.DedupePlugin(),
         new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false }}),
-        new ExtractTextPlugin('./asset/css/bundle/bundle.min.css', { allChunks: true }),
-        new webpack.DefinePlugin({ 'process.env.NODE_ENV': '"production"' })
+        new webpack.DefinePlugin({ 'process.env.NODE_ENV': '"production"' }),
+        new ExtractTextPlugin('./asset/css/bundle/bundle.min.css', { allChunks: false }),
+        // new ExtractTextPlugin('./asset/css/bundle/bundle.min.css', { allChunks: true }),
     ]
 };
