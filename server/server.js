@@ -37,23 +37,13 @@ if(fs.existsSync('./cert/server.pfx'))
 // mkfir logs
 if(!fs.existsSync('./logs'))
 {
-    fs.mkdir('./logs', (err) => {
-        if(err === null)
-        {
-            console.log("mkdir logs");
-        }
-    });
+    fs.mkdir('./logs', (err) => {});
 }
 
 // mkfir uploads
 if(!fs.existsSync('./uploads'))
 {
-    fs.mkdir('./uploads', (err) => {
-        if(err === null)
-        {
-            console.log("mkdir uploads");
-        }
-    });
+    fs.mkdir('./uploads', (err) => {});
 }
 
 process.on('uncaughtException', evt =>
