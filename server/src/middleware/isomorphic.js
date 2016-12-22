@@ -3,7 +3,6 @@ import { renderToString } from 'react-dom/server';
 import { RouterContext, match } from 'react-router';
 import { applyMiddleware, createStore } from 'redux';
 import { Provider } from 'react-redux';
-import { combineReducers } from 'redux';
 import serialize from 'serialize-javascript';
 import promiseMiddleware from '../../../common/middleware/promiseMiddleware';
 import createRoutes from '../../../common/routes/routes';
