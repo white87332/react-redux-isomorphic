@@ -3,6 +3,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var path = require('path');
 var autoprefixer = require('autoprefixer');
 var flexibility = require('postcss-flexibility');
+var cssMqpacker = require("css-mqpacker");
 
 module.exports = {
     entry:
@@ -50,7 +51,8 @@ module.exports = {
     },
     postcss: [
         autoprefixer,
-        flexibility
+        flexibility,
+        cssMqpacker
     ],
     plugins: [
         new webpack.optimize.OccurrenceOrderPlugin(),

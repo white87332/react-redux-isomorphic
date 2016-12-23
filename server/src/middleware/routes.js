@@ -54,15 +54,13 @@ function routeErrorSet(app)
 {
     return new Promise((resolve, reject) =>
     {
-        app.get('*', function(req, res) {
+        app.get('*', (req, res) => {
             res.status(404).send('Server.js > 404 - Page Not Found');
         });
-
-        app.use((err, req, res, next) =>{
+        app.use((err, req, res, next) => {
             console.log(err);
             res.status(500).send("Server error");
         });
-
         resolve();
     });
 }

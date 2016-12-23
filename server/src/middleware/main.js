@@ -5,8 +5,8 @@ import cookieParser from 'cookie-parser';
 import path from 'path';
 import compression from 'compression';
 import helmet from 'helmet';
-import i18n from '../i18n/i18n-server';
 import i18nMiddleware from 'i18next-express-middleware';
+import i18n from '../i18n/i18n-server';
 
 export default function(app)
 {
