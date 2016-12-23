@@ -122,7 +122,7 @@ function renderFullPage(html, initialState, i18nClient)
             <div id="root">${html}</div>
             <script>window.$REDUX_STATE = ${serialize(JSON.stringify(initialState))}</script>
             <script>window.$i18n = ${serialize(i18nClient)}</script>
-            <script src=${jsSrc}></script>
+            <script async src=${jsSrc}></script>
           </body>
         </html>`
     );
