@@ -1,16 +1,16 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { RouterContext, match } from 'react-router';
+import { I18nextProvider } from 'react-i18next';
 import { applyMiddleware, createStore } from 'redux';
 import { Provider } from 'react-redux';
 import serialize from 'serialize-javascript';
+import { merge } from 'lodash';
 import promiseMiddleware from '../../../common/middleware/promiseMiddleware';
 import createRoutes from '../../../common/routes/routes';
 import rootReducer from '../../../common/reducers';
 import fetchComponentData from '../../../common/utils/fetchComponentData';
-import { I18nextProvider } from 'react-i18next';
 import i18n from '../i18n/i18n-server';
-import { merge } from 'lodash';
 
 const finalCreateStore = applyMiddleware(promiseMiddleware)(createStore);
 
