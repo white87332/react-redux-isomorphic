@@ -14,7 +14,7 @@ import i18n from '../i18n/i18n-server';
 
 const finalCreateStore = applyMiddleware(promiseMiddleware)(createStore);
 
-export default function isomorphic(app)
+export default function render(app)
 {
     // server rendering
     app.use((req, res, next) =>

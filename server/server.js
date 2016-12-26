@@ -4,14 +4,14 @@ import http from 'http';
 import https from 'spdy';
 import main from './src/middleware/main';
 import routes from './src/middleware/routes';
-import isomorphic from './src/middleware/isomorphic';
+import render from './src/middleware/render';
 import globalSet from './src/middleware/globalSet.js';
 
 const app = express();
 
 globalSet();
 main(app);
-isomorphic(app);
+render(app);
 routes(app);
 
 // port
