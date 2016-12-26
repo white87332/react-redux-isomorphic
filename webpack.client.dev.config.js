@@ -1,7 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
 var autoprefixer = require('autoprefixer');
-var flexibility = require('postcss-flexibility');
 var cssMqpacker = require("css-mqpacker");
 
 module.exports = {
@@ -58,7 +57,6 @@ module.exports = {
     },
     postcss: [
         autoprefixer,
-        flexibility,
         cssMqpacker
     ],
     plugins: [

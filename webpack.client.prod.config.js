@@ -2,7 +2,6 @@ var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var path = require('path');
 var autoprefixer = require('autoprefixer');
-var flexibility = require('postcss-flexibility');
 var cssMqpacker = require("css-mqpacker");
 
 module.exports = {
@@ -51,7 +50,6 @@ module.exports = {
     },
     postcss: [
         autoprefixer,
-        flexibility,
         cssMqpacker
     ],
     plugins: [
