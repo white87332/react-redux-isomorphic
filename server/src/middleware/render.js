@@ -62,7 +62,7 @@ export default function render(app)
                     res.cookie('i18nextLang', locale);
                 }
 
-                const resources = i18nResource(locale, components.locales);
+                const resources = (undefined !== components.locales)? i18nResource(locale, components.locales) : i18nResource(locale, ['common']);
                 const i18nClient = { locale, resources };
                 const i18nServer = i18n.cloneInstance();
                 i18nServer.changeLanguage(locale);
@@ -105,9 +105,14 @@ function i18nResource(locale, locales)
 
 function renderFullPage(html, initialState, i18nClient)
 {
-	let jsLink = (process.env.NODE_ENV === 'development')? "bundle.js" : "bundle.min.js";
-    // let cssLink = (process.env.NODE_ENV === 'development')? "" : "<link rel=stylesheet type='text/css' href='/asset/css/bundle/bundle.min.css'>";
-    let cssLink = (process.env.NODE_ENV === 'development')? "" : "<link rel='preload' as='style' href='/asset/css/bundle/bundle.min.css'>";
+    let jsLink = "bundle.min.js";
+    let cssLink = "<link rel='preload' as='style' href='/asset/css/bundle/bundle.min.css'>";
+    if (process.env.NODE_ENV === 'development')
+    {
+        jsLink = "bundle.js";
+        cssLink = "";
+    }
+    
     return (
         `<!doctype html>
         <html lang="utf-8">
