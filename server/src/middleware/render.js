@@ -105,7 +105,7 @@ function i18nResource(locale, locales)
 
 function renderFullPage(html, initialState, i18nClient)
 {
-	let jsLink = (process.env.NODE_ENV === 'development')? "<script async src='/asset/js/bundle/bundle.js'></script>" : "<script async src='/asset/js/bundle/bundle.min.js'></script>";
+	let jsLink = (process.env.NODE_ENV === 'development')? "bundle.js" : "bundle.min.js";
     // let cssLink = (process.env.NODE_ENV === 'development')? "" : "<link rel=stylesheet type='text/css' href='/asset/css/bundle/bundle.min.css'>";
     let cssLink = (process.env.NODE_ENV === 'development')? "" : "<link rel='preload' as='style' href='/asset/css/bundle/bundle.min.css'>";
     return (
@@ -123,7 +123,7 @@ function renderFullPage(html, initialState, i18nClient)
             <div id="root">${html}</div>
             <script>window.$REDUX_STATE = ${serialize(JSON.stringify(initialState))}</script>
             <script>window.$i18n = ${serialize(i18nClient)}</script>
-            ${jsLink}
+            <script async src="/asset/js/bundle/${jsLink}"></script>
           </body>
         </html>`
     );
