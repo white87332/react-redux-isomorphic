@@ -122,8 +122,9 @@ function renderFullPage(html, initialState, i18nClient)
               <meta http-equiv="X-UA-Compatible" content="IE=edge">
               <meta name="viewport" content="width=device-width, initial-scale=1">
               <meta name="description" content="">
-              <title>react-redux-isomorphic</title>
+              <link rel="shortcut icon" href="/asset/img/favicon.ico" type="image/x-icon" />
               ${cssLink}
+              <title>react-redux-isomorphic</title>
           </head>
           <body>
             <div id="root">${html}</div>
