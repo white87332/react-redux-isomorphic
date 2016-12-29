@@ -1,7 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
 var autoprefixer = require('autoprefixer');
-var cssMqpacker = require("css-mqpacker");
 
 module.exports = {
     entry:
@@ -56,8 +55,7 @@ module.exports = {
         }]
     },
     postcss: [
-        autoprefixer,
-        cssMqpacker
+        autoprefixer
     ],
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
