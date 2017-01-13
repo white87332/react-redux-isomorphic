@@ -24,24 +24,27 @@ function routesSet(app)
     {
         fs.readdir(apiPath, (err, files) =>
         {
-            for (let fileName of files)
+            if(files.length > 0)
             {
-                if (fileName !== '.DS_Store')
+                for (let fileName of files)
                 {
-                    let apiObj = require('../api/' + fileName).default;
-                    let { routes, initExec } = apiObj.init();
-                    if ((initExec !== undefined && !initExec) && (isArray(routes) && routes.length > 0))
+                    if (fileName !== '.DS_Store')
                     {
-                        for (let route of routes)
+                        let apiObj = require('../api/' + fileName).default;
+                        let { routes, initExec } = apiObj.init();
+                        if ((initExec !== undefined && !initExec) && (isArray(routes) && routes.length > 0))
                         {
-                            let url = route.url.toLowerCase();
-                            let method = route.method.toLowerCase();
-                            app[route.method.toLowerCase()](url, apiObj.exec);
+                            for (let route of routes)
+                            {
+                                let url = route.url.toLowerCase();
+                                let method = route.method.toLowerCase();
+                                app[route.method.toLowerCase()](url, apiObj.exec);
+                            }
                         }
-                    }
-                    else if (initExec !== undefined && initExec)
-                    {
-                        apiObj.exec();
+                        else if (initExec !== undefined && initExec)
+                        {
+                            apiObj.exec();
+                        }
                     }
                 }
             }

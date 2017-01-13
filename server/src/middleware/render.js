@@ -19,7 +19,8 @@ export default function render(app)
     // server rendering
     app.use((req, res, next) =>
     {
-        if(req.url.indexOf('/api') !== -1)
+        let url = req.url;
+        if(url.indexOf('/api') !== -1 || url.indexOf('/favicon.ico') !== -1)
         {
             next();
         }
@@ -30,7 +31,7 @@ export default function render(app)
             const routes = createRoutes(store);
 
             // react-router
-        	match({ routes, location: req.url }, ( error, redirectLocation, renderProps ) =>
+        	match({ routes, location: url }, ( error, redirectLocation, renderProps ) =>
             {
         		if(error)
                 {
