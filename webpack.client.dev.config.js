@@ -18,10 +18,6 @@ module.exports = {
         publicPath: '/asset/js/bundle/',
         chunkFilename: "chunk.[name].js"
     },
-    resolve:
-    {
-        "extensions": ["", ".js", ".jsx"]
-    },
     module:
     {
         loaders: [
