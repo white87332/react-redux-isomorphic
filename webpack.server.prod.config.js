@@ -17,7 +17,7 @@ module.exports = {
     output: {
         path: path.join(process.cwd(), 'build'),
         filename: 'server.js',
-        chunkFilename: "[name].js"
+        chunkFilename: "[id].js"
     },
     externals: getExternals(),
     node: {
@@ -25,17 +25,12 @@ module.exports = {
         __dirname: true
     },
     module: {
-        loaders: [
+        rules: [
             {
-                test: /\.json$/,
-                loader: 'json-loader'
-            }, {
                 test: /\.js$/,
                 loader: 'babel-loader',
                 query: {
-                    presets: [
-                        "es2015", "react", "stage-0"
-                    ],
+                    presets: ["react", "es2015", "stage-0"],
                     plugins: ["transform-decorators-legacy"]
                 },
                 exclude: /(node_modules)/
@@ -44,6 +39,9 @@ module.exports = {
     },
     plugins: [
         new webpack.IgnorePlugin(/\.(css|less|scss|svg|png|jpe?g|png)$/),
-        new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false } })
+        new webpack.LoaderOptionsPlugin({
+            minimize: true,
+            debug: false
+        })
     ]
 };

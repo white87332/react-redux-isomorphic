@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as CounterActions from '../../actions/counter.js';
 import { translate } from 'react-i18next';
+import isNode from 'detect-node';
+import * as CounterActions from '../../actions/counter.js';
+
+if(!isNode){require('./counter.scss');}
 
 function mapStateToProps(state)
 {

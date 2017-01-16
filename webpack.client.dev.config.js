@@ -16,11 +16,11 @@ module.exports = {
         path: '/asset/js/bundle/',
         filename: 'bundle.js',
         publicPath: '/asset/js/bundle/',
-        chunkFilename: "chunk.[name].js"
+        chunkFilename: "chunk.[id].js"
     },
     module:
     {
-        loaders: [
+        rules: [
         {
             test: /\.js?$/,
             loader: 'babel',
@@ -28,34 +28,36 @@ module.exports = {
             exclude: /node_modules/,
             query:
             {
-                presets: ['react-hmre', "es2015", "stage-0", "react"],
+                presets: ['react-hmre', ["es2015", { "modules": false }], "stage-0", "react"],
                 plugins: ["transform-decorators-legacy"],
             }
         },
         {
-            test: /\.json$/,
-            loader: "json-loader"
-        },
-        {
             test: /\.css|\.scss$/,
-            loaders: [
+            use: [
                 "style",
-                "css",
+                {
+                    loader: "css",
+                    options: {
+                        options: { modules: false }
+                    }
+                },
                 "sass?outputStyle=compressed",
                 "postcss"
             ]
         },
         {
             test: /\.(jpe?g|png|gif|svg)$/i,
-            loader: 'url-loader?limit=8192&name=../public/asset/img/[name].[ext]'
+            use: 'url-loader?limit=8192&name=./asset/img/[name].[ext]'
         }]
     },
-    postcss: [
-        autoprefixer
-    ],
+    resolveLoader: {
+        moduleExtensions: ["-loader"]
+    },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoErrorsPlugin(),
-        new webpack.DefinePlugin({ 'process.env.NODE_ENV': '"development"' })
+        new webpack.NoEmitOnErrorsPlugin(),
+        new webpack.DefinePlugin({ 'process.env.NODE_ENV': '"development"' }),
+        new webpack.LoaderOptionsPlugin({ options: { postcss: [ autoprefixer ] } })
     ]
 };
