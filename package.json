@@ -15,7 +15,7 @@
     "react",
     "server side render",
     "isomorphic",
-    "i18next"
+    "i18next",
     "webpack2"
   ],
   "license": "MIT",
