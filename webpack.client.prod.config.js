@@ -33,17 +33,16 @@ module.exports = {
         },
         {
             test: /\.css|\.scss$/,
-            use: [
-                "style",
+            loader: ExtractTextPlugin.extract(
                 {
-                    loader: "css",
-                    options: {
-                        options: { modules: false }
-                    }
-                },
-                "sass?outputStyle=compressed",
-                "postcss"
-            ]
+                    fallbackLoader: 'style',
+                    loader: [
+                        { loader: 'css'},
+                        'sass',
+                        'postcss'
+                    ]
+                }
+            )
         },
         {
             test: /\.(jpe?g|png|gif|svg)$/i,
