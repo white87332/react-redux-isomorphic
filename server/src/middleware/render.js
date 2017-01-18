@@ -107,6 +107,14 @@ function i18nResource(locale, locales)
 function renderFullPage(html, initialState, i18nClient)
 {
     let jsLink = (process.env.NODE_ENV === 'development')? "bundle.js" : "bundle.min.js";
+    let cssLink = "<link rel='stylesheet' type='text/css' href='/asset/css/bundle/bundle.min.css'>";
+    // let cssLink = "<link rel='preload' as='style' href='/asset/css/bundle/bundle.min.css'>";
+    if (process.env.NODE_ENV === 'development')
+    {
+        jsLink = "bundle.js";
+        cssLink = "";
+    }
+
     return (
         `<!doctype html>
         <html lang="utf-8">
@@ -116,6 +124,7 @@ function renderFullPage(html, initialState, i18nClient)
               <meta name="viewport" content="width=device-width, initial-scale=1">
               <meta name="description" content="">
               <link rel="shortcut icon" href="/asset/img/favicon.ico" type="image/x-icon" />
+              ${cssLink}
               <title>react-redux-isomorphic</title>
           </head>
           <body>
