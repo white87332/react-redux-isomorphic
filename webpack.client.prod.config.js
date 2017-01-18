@@ -61,6 +61,18 @@ module.exports = {
                 postcss: [ autoprefixer ]
             }
         }),
+        new webpack.optimize.UglifyJsPlugin({
+           beautify: false,
+           mangle: {
+               screw_ie8: true,
+               keep_fnames: true
+           },
+           compress: {
+               screw_ie8: true,
+               warnings: false
+           },
+           comments: false
+       }),
         new ExtractTextPlugin({
             filename:'./asset/css/bundle/bundle.min.css',
             allChunks: false
