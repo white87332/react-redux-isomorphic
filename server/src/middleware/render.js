@@ -106,7 +106,7 @@ function i18nResource(locale, locales)
 
 function renderFullPage(html, initialState, i18nClient)
 {
-    let jsLink = (process.env.NODE_ENV === 'development')? "bundle.js" : "bundle.min.js";
+    let jsLink = "bundle.min.js";
     let cssLink = "<link rel='stylesheet' type='text/css' href='/asset/css/bundle/bundle.min.css'>";
     // let cssLink = "<link rel='preload' as='style' href='/asset/css/bundle/bundle.min.css'>";
     if (process.env.NODE_ENV === 'development')
