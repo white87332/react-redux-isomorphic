@@ -4,6 +4,10 @@
         "node": true,
         "browser": true
     },
+    "globals": {
+        "log": true,
+        "reactCookie": true
+    },
     "extends": "airbnb",
     "parser": "babel-eslint",
     "parserOptions": {
@@ -17,6 +21,8 @@
         "brace-style": [
             1, "allman"
         ],
+        "no-else-return": 0,
+        "no-case-declarations": 0,
         "comma-dangle": 0,
         "consistent-return": 0,
         "global-require": 0,
@@ -29,10 +35,11 @@
                 "SwitchCase": 1
             }
         ],
+        "no-unneeded-ternary": 0,
         "arrow-body-style": 0,
         "max-len": [
             1,
-            120,
+            240,
             2, {
                 "ignoreComments": true
             }
