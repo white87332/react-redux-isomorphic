@@ -1,16 +1,16 @@
 export default
 {
-    init: function()
+    init()
     {
         return {
             initExec: false,
             routes: [
-                { 'method': 'get', 'url': '/api' }
-            ]
+                { method: 'get', url: '/api' },
+            ],
         };
     },
 
-    exec: function(req, res)
+    exec(req, res)
     {
         res.json({});
     }

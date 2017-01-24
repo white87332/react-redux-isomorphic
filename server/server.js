@@ -5,7 +5,7 @@ import https from 'spdy';
 import main from './src/middleware/main';
 import routes from './src/middleware/routes';
 import render from './src/middleware/render';
-import globalSet from './src/middleware/globalSet.js';
+import globalSet from './src/middleware/globalSet';
 
 const app = express();
 
@@ -15,38 +15,43 @@ render(app);
 routes(app);
 
 // port
-let httpPort = process.env.PORT || 3000;
-let httpsPort = process.env.HTTPS_PORT || 3443;
+const httpPort = process.env.PORT || 3000;
+const httpsPort = process.env.HTTPS_PORT || 3443;
 
 // http
 http.createServer(app).listen(httpPort);
-console.log('http happens on port ' + httpPort);
+
+console.log(`http happens on port ${httpPort}`);
 
 // https
-if(fs.existsSync('./cert/server.pfx'))
+if (fs.existsSync('./cert/server.pfx'))
 {
-    let options = {
+    const options = {
         pfx: fs.readFileSync('../cert/server.pfx'),
-        passphrase: ''
+        passphrase: 'password',
     };
 
     https.createServer(options, app).listen(httpsPort);
-    console.log('https happens on port ' + httpsPort);
+    console.log(`http happens on port ${httpsPort}`);
 }
 
 // mkfir logs
-if(!fs.existsSync('./logs'))
+if (!fs.existsSync('./logs'))
 {
-    fs.mkdir('./logs', (err) => {});
+    fs.mkdir('./logs', () =>
+    {
+    });
 }
 
 // mkfir uploads
-if(!fs.existsSync('./uploads'))
+if (!fs.existsSync('./uploads'))
 {
-    fs.mkdir('./uploads', (err) => {});
+    fs.mkdir('./uploads', () =>
+    {
+    });
 }
 
-process.on('uncaughtException', evt =>
+process.on('uncaughtException', (evt) =>
 {
-	console.log( 'uncaughtException: ', evt );
+    console.log('uncaughtException: ', evt);
 });

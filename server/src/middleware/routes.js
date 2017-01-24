@@ -1,43 +1,29 @@
-import "babel-polyfill";
+import 'babel-polyfill';
 import fs from 'fs';
 import { isArray } from 'util';
-import Result from '../class/result';
 import path from 'path';
-let apiPath = path.resolve(__dirname, "../api");
 
-export default async function(app)
-{
-    try
-    {
-        await routesSet(app);
-        await routeErrorSet(app);
-    }
-    catch (e)
-    {
-        console.log(e);
-    }
-}
+const apiPath = path.resolve(__dirname, '../api');
 
 function routesSet(app)
 {
-    return new Promise((resolve, reject) =>
+    return new Promise((resolve) =>
     {
         fs.readdir(apiPath, (err, files) =>
         {
-            if(files.length > 0)
+            if (files.length > 0)
             {
-                for (let fileName of files)
+                for (const fileName of files)
                 {
                     if (fileName !== '.DS_Store')
                     {
-                        let apiObj = require('../api/' + fileName).default;
-                        let { routes, initExec } = apiObj.init();
+                        const apiObj = require(`../api/${fileName}`).default;
+                        const { routes, initExec } = apiObj.init();
                         if ((initExec !== undefined && !initExec) && (isArray(routes) && routes.length > 0))
                         {
-                            for (let route of routes)
+                            for (const route of routes)
                             {
-                                let url = route.url.toLowerCase();
-                                let method = route.method.toLowerCase();
+                                const url = route.url.toLowerCase();
                                 app[route.method.toLowerCase()](url, apiObj.exec);
                             }
                         }
@@ -55,15 +41,30 @@ function routesSet(app)
 
 function routeErrorSet(app)
 {
-    return new Promise((resolve, reject) =>
+    return new Promise((resolve) =>
     {
-        app.get('*', (req, res) => {
+        app.get('*', (req, res) =>
+        {
             res.status(404).send('Server.js > 404 - Page Not Found');
         });
-        app.use((err, req, res, next) => {
+        app.use((err, req, res) =>
+        {
             console.log(err);
-            res.status(500).send("Server error");
+            res.status(500).send('Server error');
         });
         resolve();
     });
+}
+
+export default async function (app)
+{
+    try
+    {
+        await routesSet(app);
+        await routeErrorSet(app);
+    }
+    catch (e)
+    {
+        console.log(e);
+    }
 }

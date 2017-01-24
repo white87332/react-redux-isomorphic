@@ -2,6 +2,12 @@ import React from 'react';
 
 class Layout extends React.Component
 {
+    constructor(props, context)
+    {
+        super(props, context);
+        this.state = {};
+    }
+
     render()
     {
         return (
@@ -11,5 +17,13 @@ class Layout extends React.Component
         );
     }
 }
+
+Layout.defaultProps = {
+    children: {}
+};
+
+Layout.propTypes = {
+    children: React.PropTypes.element.isRequired
+};
 
 export default Layout;

@@ -5,8 +5,9 @@ const path = require('path');
 function getExternals()
 {
     const nodeModules = fs.readdirSync(path.join(process.cwd(), 'node_modules'));
-    return nodeModules.reduce(function(ext, mod) {
-        ext[mod] = 'commonjs ' + mod;
+    return nodeModules.reduce((ext, mod) =>
+    {
+        ext[mod] = `commonjs${mod}`;
         return ext;
     }, {});
 }
@@ -17,7 +18,7 @@ module.exports = {
     output: {
         path: path.join(process.cwd(), 'build'),
         filename: 'server.js',
-        chunkFilename: "[id].js"
+        chunkFilename: '[id].js'
     },
     externals: getExternals(),
     node: {
@@ -30,8 +31,8 @@ module.exports = {
                 test: /\.js$/,
                 loader: 'babel-loader',
                 query: {
-                    presets: ["react", "es2015", "stage-0"],
-                    plugins: ["transform-decorators-legacy"]
+                    presets: ['react', 'es2015', 'stage-0'],
+                    plugins: ['transform-decorators-legacy']
                 },
                 exclude: /(node_modules)/
             }

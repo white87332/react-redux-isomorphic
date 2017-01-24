@@ -1,7 +1,7 @@
 if (typeof require.ensure !== 'function') require.ensure = (d, c) => c(require);
 
-export default (store) => (
-{
+// parameter has store
+export default () => ({
     path: '/',
     getComponent(nextState, cb)
     {

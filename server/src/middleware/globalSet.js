@@ -1,6 +1,6 @@
-import logger from '../class/logger';
+import Logger from '../class/logger';
 
 export default () =>
 {
-    global.log = new logger().getLog();
+    global.log = new Logger().getLog();
 };

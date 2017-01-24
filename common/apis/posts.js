@@ -1,9 +1,9 @@
 import request from 'superagent';
 import { urlPath } from '../constants/config';
 
-export function dataGet()
+export default function dataGet()
 {
-    let url = urlPath + "/api";
+    const url = `${urlPath}/api`;
     return new Promise((resolve, reject) =>
     {
         request.get(url)
@@ -12,7 +12,7 @@ export function dataGet()
             {
                 if (err || res.status !== 200 || res.body.result !== 1)
                 {
-                    if(err || res.status !== 200)
+                    if (err || res.status !== 200)
                     {
                         reject(new Error(err));
                     }

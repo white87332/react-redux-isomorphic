@@ -2,7 +2,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import * as postsActions from '../../actions/postsActions';
+import postsList from '../../actions/postsActions';
 
 function mapStateToProps(state)
 {
@@ -14,7 +14,7 @@ function mapStateToProps(state)
 function mapDispatchToProps(dispatch)
 {
     return {
-        postsActions: bindActionCreators(postsActions, dispatch)
+        postsActions: bindActionCreators(postsList, dispatch)
     };
 }
 
@@ -25,40 +25,45 @@ class Posts extends React.Component
 
     // server 端判斷 needs 觸發取得 initial data
     static needs = [
-        postsActions.postsList
+        postsList
     ];
 
-    constructor(props)
+    constructor(props, context)
     {
-        super(props);
+        super(props, context);
+        this.state = {};
     }
 
     componentDidMount()
     {
-        // let { dispatch, postsActions } = this.props;
-        //
+        // const { dispatch, postsActions } = this.props;
+        // console.log(typeof dispatch);
         // dispatch(postsActions.postsList());
     }
 
     render()
     {
         const { posts } = this.props;
-
-        let items = posts.list.map((data, key) => {
-            return <div key={key}>{data.title}</div>;
+        const items = posts.list.map((data) =>
+        {
+            const div = <div key={data.id}>{data.title}</div>;
+            return div;
         });
 
         return (
             <div>
-               {items}
-             </div>
+                {items}
+            </div>
         );
     }
 }
 
+Posts.defaultProps = {
+    posts: {}
+};
+
 Posts.propTypes = {
-    posts: React.PropTypes.object.isRequired,
-    postsActions: React.PropTypes.object.isRequired
+    posts: React.PropTypes.object
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Posts);

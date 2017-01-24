@@ -1,13 +1,14 @@
 if (typeof require.ensure !== 'function') require.ensure = (d, c) => c(require);
 
-export default (store) => (
-{
-    path: '*',
-    getComponent(nextState, cb)
+export default () => (
     {
-        require.ensure([], (require) =>
+        path: '*',
+        getComponent(nextState, cb)
         {
-            cb(null, require('../components/notFound/notFound').default);
-        }, 'notFound');
+            require.ensure([], (require) =>
+            {
+                cb(null, require('../components/notFound/notFound').default);
+            }, 'notFound');
+        }
     }
-});
+);

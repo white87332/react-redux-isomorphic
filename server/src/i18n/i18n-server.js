@@ -17,14 +17,14 @@ i18n.use(Backend)
 
         interpolation:
         {
-            escapeValue: false // not needed for react!!
+            escapeValue: false, // not needed for react!!
         },
 
         backend:
         {
             loadPath: 'locales/{{lng}}/{{ns}}.json',
-            jsonIndent: 2
-        }
+            jsonIndent: 2,
+        },
     });
 
 export default i18n;

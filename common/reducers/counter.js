@@ -1,8 +1,8 @@
-import { INCREMENT_COUNTER, DECREMENT_COUNTER } from '../actions/counter';
 import update from 'react-addons-update';
+import { INCREMENT_COUNTER, DECREMENT_COUNTER } from '../actions/counter';
 
 const initialState = {
-    'numbers': 0
+    numbers: 0
 };
 
 export default function counter(state = initialState, action = {})

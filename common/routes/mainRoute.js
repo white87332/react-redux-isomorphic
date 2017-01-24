@@ -1,46 +1,48 @@
-if (typeof require.ensure !== 'function') require.ensure = (d, c) => c(require);
-
 import isNode from 'detect-node';
 
+if (typeof require.ensure !== 'function') require.ensure = (d, c) => c(require);
+
 let path;
-if(process.env.NODE_ENV === 'development')
+if (process.env.NODE_ENV === 'development')
 {
-    path = (isNode) ? process.cwd() + "/common/routes/" : "./";
+    path = (isNode) ? `${process.cwd()}/common/routes/` : './';
 }
 else
 {
-    path = "./";
+    path = './';
 }
 
-export default (store) => (
-{
-    childRoutes: [
+export default store => (
     {
-        getChildRoutes(partialNextState, cb)
-        {
-            let nowPath = partialNextState.location.pathname.split("/")[1];
-            switch (nowPath)
+        childRoutes: [
             {
-                case 'posts':
-                    require.ensure([], (require) =>
+                getChildRoutes(partialNextState, cb)
+                {
+                    const nowPath = partialNextState.location.pathname.split('/')[1];
+                    switch (nowPath)
                     {
-                        cb(null, [
-                            require(path + "postsRoute").default(store)
-                        ]);
-                    }, 'main');
-                    break;
-                default:
-                    require.ensure([], (require) =>
-                    {
-                        cb(null, [
-                            require(path + "layoutRoute").default(store)
-                        ]);
-                    }, 'main');
+                        case 'posts':
+                            require.ensure([], (require) =>
+                            {
+                                cb(null, [
+                                    require(`${path}postsRoute`).default(store)
+                                ]);
+                            }, 'main');
+                            break;
+                        default:
+                            require.ensure([], (require) =>
+                            {
+                                cb(null, [
+                                    require(`${path}layoutRoute`).default(store)
+                                ]);
+                            }, 'main');
+                    }
+                }
             }
+        ],
+        indexRoute:
+        {
+            onEnter: (nextState, replace) => replace('/')
         }
-    }],
-    indexRoute:
-    {
-        onEnter: (nextState, replace) => replace('/')
     }
-});
+);

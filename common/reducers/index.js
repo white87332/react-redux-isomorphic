@@ -2,8 +2,7 @@ import { combineReducers } from 'redux';
 import counter from './counter';
 import posts from './posts';
 
-const rootReducer = combineReducers(
-{
+const rootReducer = combineReducers({
     counter,
     posts
 });

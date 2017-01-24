@@ -1,13 +1,15 @@
 if (typeof require.ensure !== 'function') require.ensure = (d, c) => c(require);
 
-export default (store) => (
-{
-    path: 'posts',
-    getComponent(nextState, cb)
+export default () =>
+(
     {
-        require.ensure([], (require) =>
+        path: 'posts',
+        getComponent(nextState, cb)
         {
-            cb(null, require('../components/posts/posts').default);
-        }, 'posts');
+            require.ensure([], (require) =>
+            {
+                cb(null, require('../components/posts/posts').default);
+            }, 'posts');
+        }
     }
-});
+);

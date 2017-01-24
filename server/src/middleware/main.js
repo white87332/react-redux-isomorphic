@@ -8,9 +8,9 @@ import helmet from 'helmet';
 import i18nMiddleware from 'i18next-express-middleware';
 import i18n from '../i18n/i18n-server';
 
-export default function(app)
+export default function (app)
 {
-    let rootPath = path.resolve('public');
+    const rootPath = path.resolve('public');
     app.use(compression());
     app.use(helmet());
     app.use(i18nMiddleware.handle(i18n));
@@ -19,13 +19,13 @@ export default function(app)
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(cookieParser());
     app.use(session(
-    {
-        secret: 'sessionSecret',
-        resave: false,
-        saveUninitialized: true,
-        httpOnly: true,
-        secure: false
-    }));
+        {
+            secret: 'sessionSecret',
+            resave: false,
+            saveUninitialized: true,
+            httpOnly: true,
+            secure: false,
+        }));
     app.use((req, res, next) =>
     {
         res.header('Access-Control-Allow-Origin', '*');
@@ -36,14 +36,19 @@ export default function(app)
     });
 
     // webpack HMR
-    if(process.env.NODE_ENV === 'development')
+    if (process.env.NODE_ENV === 'development')
     {
-        let webpack = require('webpack');
+        const webpack = require('webpack');
         const config = require('../../../webpack.client.dev.config');
         const compiler = webpack(config);
-        let webpackDevMiddleware = require('webpack-dev-middleware');
-        let webpackHotMiddleware = require('webpack-hot-middleware');
-        app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath }));
+
+        /* eslint import/no-extraneous-dependencies: ["error", {"peerDependencies": true}] */
+        const webpackDevMiddleware = require('webpack-dev-middleware');
+        const webpackHotMiddleware = require('webpack-hot-middleware');
+        app.use(webpackDevMiddleware(compiler,
+            {
+                noInfo: true, publicPath: config.output.publicPath,
+            }));
         app.use(webpackHotMiddleware(compiler));
     }
 }

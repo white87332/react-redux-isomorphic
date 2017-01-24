@@ -1,11 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import isNode from 'detect-node';
-import * as CounterActions from '../../actions/counter.js';
+import * as CounterActions from '../../actions/counter';
 
-if(!isNode){require('./counter.scss');}
+if (!isNode)
+{
+    require('./counter.scss');
+}
 
 function mapStateToProps(state)
 {
@@ -39,6 +42,7 @@ class Counter extends React.Component
     render()
     {
         const { increment, decrement, numbers } = this.props;
+
         const { t } = this.props;
 
         return (
@@ -47,19 +51,22 @@ class Counter extends React.Component
                 <h1>{t('content.text2')}</h1>
                 Clicked: {numbers} times
                 {' '}
-                <button onClick={increment}>+</button>
-                {' '}
-                <button onClick={decrement}>-</button>
-                {' '}
+                <button onClick={increment}>+</button>{' '}
+                <button onClick={decrement}>-</button>{' '}
             </div>
         );
     }
 }
 
+Counter.defaultProps = {
+    t: () => {}
+};
+
 Counter.propTypes = {
-    increment      : React.PropTypes.func.isRequired,
-    decrement      : React.PropTypes.func.isRequired,
-    numbers        : React.PropTypes.number.isRequired
+    t: React.PropTypes.func,
+    increment: React.PropTypes.func.isRequired,
+    decrement: React.PropTypes.func.isRequired,
+    numbers: React.PropTypes.number.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Counter);
