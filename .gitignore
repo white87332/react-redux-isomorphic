@@ -1,2 +1,4 @@
-# node_modules
+uploads/*
+logs/*
 node_modules/*
+.eslintcache
