@@ -6,7 +6,7 @@
     "dev": "cross-env NODE_ENV=development node -r babel-register ./server/server.js",
     "prod": "cross-env node ./build/server.js",
     "build": "NODE_ENV=production webpack -p --config webpack.server.prod.config.js && NODE_ENV=production webpack -p --config webpack.client.prod.config.js",
-    "lint": "eslint ./ --cache --ignore-pattern .gitignore",
+    "lint": "eslint ./ --cache --ignore-pattern .gitignore --ignore-pattern .eslintignore",
     "precommit": "echo 'pre-commit checks...' && exit 0"
   },
   "pre-commit": [
