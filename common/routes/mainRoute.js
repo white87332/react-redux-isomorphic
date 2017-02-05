@@ -27,7 +27,7 @@ export default store => (
                                 cb(null, [
                                     require(`${path}postsRoute`).default(store)
                                 ]);
-                            }, 'main');
+                            }, 'posts');
                             break;
                         default:
                             require.ensure([], (require) =>
@@ -35,7 +35,7 @@ export default store => (
                                 cb(null, [
                                     require(`${path}layoutRoute`).default(store)
                                 ]);
-                            }, 'main');
+                            }, 'layout');
                     }
                 }
             }
