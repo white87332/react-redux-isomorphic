@@ -18,12 +18,26 @@ export default store => (
         component: Layout,
         getChildRoutes(partialNextState, cb)
         {
-            require.ensure([], (require) =>
+            const nowPath = partialNextState.location.pathname.split('/')[1];
+            switch (nowPath)
             {
-                cb(null, [
-                    require(`${path}counterRoute`).default(store)
-                ]);
-            }, 'layout');
+                case '':
+                    require.ensure([], (require) =>
+                    {
+                        cb(null, [
+                            require(`${path}counterRoute`).default(store)
+                        ]);
+                    }, 'counter');
+                    break;
+
+                default:
+                    require.ensure([], (require) =>
+                    {
+                        cb(null, [
+                            require(`${path}notFoundRoute`).default(store)
+                        ]);
+                    }, 'notFound');
+            }
         }
     }
 );
