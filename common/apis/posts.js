@@ -1,4 +1,4 @@
-import request from 'superagent';
+import { get } from 'superagent';
 import { urlPath } from '../constants/config';
 
 export default function dataGet()
@@ -6,25 +6,25 @@ export default function dataGet()
     const url = `${urlPath}/api`;
     return new Promise((resolve, reject) =>
     {
-        request.get(url)
-            .set('Accept', 'application/json')
-            .end((err, res) =>
+        get(url)
+        .set('Accept', 'application/json')
+        .end((err, res) =>
+        {
+            if (err || res.status !== 200 || res.body.result !== 1)
             {
-                if (err || res.status !== 200 || res.body.result !== 1)
+                if (err || res.status !== 200)
                 {
-                    if (err || res.status !== 200)
-                    {
-                        reject(new Error(err));
-                    }
-                    else
-                    {
-                        reject(new Error(res.body.message));
-                    }
+                    reject(new Error(err));
                 }
                 else
                 {
-                    resolve(res.body);
+                    reject(new Error(res.body.message));
                 }
-            });
+            }
+            else
+            {
+                resolve(res.body);
+            }
+        });
     });
 }
