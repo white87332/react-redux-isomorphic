@@ -6,7 +6,7 @@
     "dev": "cross-env NODE_ENV=development node -r babel-register ./server/server.js",
     "prod": "cross-env node ./build/server.js",
     "build": "NODE_ENV=production webpack -p --config webpack.server.prod.config.js && NODE_ENV=production webpack -p --config webpack.client.prod.config.js",
-    "lint": "eslint ./ --cache --ignore-pattern .gitignore --ignore-pattern .eslintignore",
+    "lint": "eslint ./ --cache --ignore-pattern .gitignore .eslintignore",
     "precommit": "echo 'pre-commit checks...' && exit 0"
   },
   "pre-commit": [
@@ -76,7 +76,7 @@
     "babel-register": "^6.22.0",
     "css-loader": "^0.26.1",
     "eslint": "^3.15.0",
-    "eslint-config-airbnb": "^14.0.0",
+    "eslint-config-airbnb": "^14.1.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^3.0.2",
     "eslint-plugin-react": "^6.9.0",
