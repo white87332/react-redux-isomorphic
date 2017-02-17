@@ -42,9 +42,9 @@ if (!fs.existsSync('./logs'))
 }
 
 // mkfir uploads
-if (!fs.existsSync('./uploads'))
+if (!fs.existsSync('./public/asset/uploads'))
 {
-    fs.mkdir('./uploads');
+    fs.mkdir('./public/asset/uploads');
 }
 
 process.on('uncaughtException', (evt) =>
