@@ -7,7 +7,7 @@ export default () => ({
     {
         require.ensure([], (require) =>
         {
-            cb(null, require('../components/counter/counter').default);
-        }, 'counter');
+            cb(null, require('../path/index/index').default);
+        }, 'index');
     }
 });

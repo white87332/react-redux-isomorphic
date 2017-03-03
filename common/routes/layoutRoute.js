@@ -25,9 +25,9 @@ export default store => (
                     require.ensure([], (require) =>
                     {
                         cb(null, [
-                            require(`${path}counterRoute`).default(store)
+                            require(`${path}indexRoute`).default(store)
                         ]);
-                    }, 'counter');
+                    }, 'index');
                     break;
 
                 default:

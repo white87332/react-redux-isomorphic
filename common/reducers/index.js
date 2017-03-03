@@ -1,10 +1,8 @@
 import { combineReducers } from 'redux';
-import counter from './counter';
-import posts from './posts';
+import play from './play';
 
 const rootReducer = combineReducers({
-    counter,
-    posts
+    play
 });
 
 export default rootReducer;
