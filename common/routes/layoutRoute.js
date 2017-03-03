@@ -30,6 +30,24 @@ export default store => (
                     }, 'index');
                     break;
 
+                case 'counter':
+                    require.ensure([], (require) =>
+                    {
+                        cb(null, [
+                            require(`${path}counterRoute`).default(store)
+                        ]);
+                    }, 'counter');
+                    break;
+
+                case 'post':
+                    require.ensure([], (require) =>
+                    {
+                        cb(null, [
+                            require(`${path}postRoute`).default(store)
+                        ]);
+                    }, 'post');
+                    break;
+
                 default:
                     require.ensure([], (require) =>
                     {
