@@ -18,7 +18,7 @@ function mapDispatchToProps()
     return {};
 }
 
-@waitCss
+@waitCss(1000)
 class Index extends React.Component
 {
     static locales = [];

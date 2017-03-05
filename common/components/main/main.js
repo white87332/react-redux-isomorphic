@@ -1,11 +1,13 @@
 import React from 'react';
 import isNode from 'detect-node';
+// import waitCss from '../../components//wait/wait';
 
 if (!isNode)
 {
     require('./main.scss');
 }
 
+// @waitCss(1000)
 class Main extends React.Component
 {
     constructor(props, context)
