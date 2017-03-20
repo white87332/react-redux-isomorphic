@@ -49,8 +49,7 @@ class Counter extends React.Component
             <div className="counter">
                 <h1>{t('content.text')}</h1>
                 <h1>{t('content.text2')}</h1>
-                Clicked: {numbers} times
-                {' '}
+                <span>Clicked: {numbers} times{' '}</span>
                 <button onClick={increment}>+</button>{' '}
                 <button onClick={decrement}>-</button>{' '}
             </div>
