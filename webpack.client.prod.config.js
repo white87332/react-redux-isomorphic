@@ -14,8 +14,8 @@ module.exports = {
     output:
     {
         path: path.resolve(__dirname, 'public'),
-        filename: './asset/js/bundle/bundle.min.js',
-        chunkFilename: './asset/js/bundle/chunk.[id].min.js'
+        filename: '/asset/js/bundle/bundle.min.js',
+        chunkFilename: '/asset/js/bundle/chunk.[id].min.js'
     },
     module:
     {
