@@ -13,9 +13,10 @@ module.exports = {
     },
     output:
     {
-        path: path.resolve(__dirname, 'public'),
-        filename: '/asset/js/bundle/bundle.min.js',
-        chunkFilename: '/asset/js/bundle/chunk.[id].min.js'
+        path: path.resolve(__dirname, 'public', 'asset/js/bundle/'),
+        filename: 'bundle.min.js',
+        publicPath: '/asset/js/bundle/',
+        chunkFilename: 'chunk.[id].min.js'
     },
     module:
     {
@@ -75,7 +76,7 @@ module.exports = {
             comments: false
         }),
         new ExtractTextPlugin({
-            filename: './asset/css/bundle/bundle.min.css',
+            filename: '../../css/bundle/bundle.min.css',
             allChunks: false
         })
     ],
