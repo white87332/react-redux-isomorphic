@@ -19,15 +19,14 @@ function routesSet(app)
                     {
                         const apiObj = require(`../api/${fileName}`).default;
                         const { routes, initExec } = apiObj.init();
-                        if ((initExec !== undefined && !initExec) && (isArray(routes) && routes.length > 0))
+                        if ((undefined !== initExec && !initExec) && (isArray(routes) && routes.length > 0))
                         {
                             for (const route of routes)
                             {
-                                const url = route.url.toLowerCase();
-                                app[route.method.toLowerCase()](url, apiObj.exec);
+                                app[route.method.toLowerCase()](route.url.toLowerCase(), apiObj.exec);
                             }
                         }
-                        else if (initExec !== undefined && initExec)
+                        else if (undefined !== initExec && initExec)
                         {
                             apiObj.exec();
                         }
