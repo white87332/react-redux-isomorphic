@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Layout extends React.Component
 {
@@ -23,7 +24,7 @@ Layout.defaultProps = {
 };
 
 Layout.propTypes = {
-    children: React.PropTypes.element.isRequired
+    children: PropTypes.element.isRequired
 };
 
 export default Layout;

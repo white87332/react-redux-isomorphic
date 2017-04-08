@@ -1,5 +1,6 @@
 import React from 'react';
 import isNode from 'detect-node';
+import PropTypes from 'prop-types';
 // import waitCss from '../../components//wait/wait';
 
 if (!isNode)
@@ -31,7 +32,7 @@ Main.defaultProps = {
 };
 
 Main.propTypes = {
-    children: React.PropTypes.element.isRequired
+    children: PropTypes.element.isRequired
 };
 
 export default Main;

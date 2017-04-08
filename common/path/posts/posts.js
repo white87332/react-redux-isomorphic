@@ -2,6 +2,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
+import PropTypes from 'prop-types';
 import postsList from '../../actions/postsActions';
 
 function mapStateToProps(state)
@@ -63,7 +64,7 @@ Posts.defaultProps = {
 };
 
 Posts.propTypes = {
-    posts: React.PropTypes.object
+    posts: PropTypes.object
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Posts);

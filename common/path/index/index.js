@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import isNode from 'detect-node';
-import waitCss from '../../components//wait/wait';
+// import waitCss from '../../components//wait/wait';
 
 if (!isNode)
 {
@@ -18,7 +18,7 @@ function mapDispatchToProps()
     return {};
 }
 
-@waitCss(1000)
+// @waitCss(1000)
 class Index extends React.Component
 {
     static locales = [];

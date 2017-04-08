@@ -1,4 +1,4 @@
-import update from 'react-addons-update';
+import update from 'immutability-helper';
 import { INCREMENT_COUNTER, DECREMENT_COUNTER } from '../actions/counter';
 
 const initialState = {

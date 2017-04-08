@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import isNode from 'detect-node';
+import PropTypes from 'prop-types';
 import * as CounterActions from '../../actions/counter';
 
 if (!isNode)
@@ -62,10 +63,10 @@ Counter.defaultProps = {
 };
 
 Counter.propTypes = {
-    t: React.PropTypes.func,
-    increment: React.PropTypes.func.isRequired,
-    decrement: React.PropTypes.func.isRequired,
-    numbers: React.PropTypes.number.isRequired
+    t: PropTypes.func,
+    increment: PropTypes.func.isRequired,
+    decrement: PropTypes.func.isRequired,
+    numbers: PropTypes.number.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Counter);
