@@ -8,7 +8,7 @@ export default () =>
         {
             require.ensure([], (require) =>
             {
-                cb(null, require('../path/notFound/notFound').default);
+                cb(null, require('../containers/notFound/notFound').default);
             }, 'notFound');
         }
     }

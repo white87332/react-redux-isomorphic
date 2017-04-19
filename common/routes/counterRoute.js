@@ -9,7 +9,7 @@ export default () =>
         {
             require.ensure([], (require) =>
             {
-                cb(null, require('../path/counter/counter').default);
+                cb(null, require('../containers/counter/counter').default);
             }, 'counter');
         }
     }

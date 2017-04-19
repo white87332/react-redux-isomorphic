@@ -8,7 +8,7 @@ export default () =>
         {
             require.ensure([], (require) =>
             {
-                cb(null, require('../path/posts/posts').default);
+                cb(null, require('../containers/posts/posts').default);
             }, 'posts');
         }
     }

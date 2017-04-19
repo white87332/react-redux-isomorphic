@@ -9,7 +9,7 @@ export default () =>
         {
             require.ensure([], (require) =>
             {
-                cb(null, require('../path/index/index').default);
+                cb(null, require('../containers/index/index').default);
             }, 'index');
         }
     }
